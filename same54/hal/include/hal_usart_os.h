@@ -34,10 +34,11 @@
 #ifndef _HAL_USART_OS_H_INCLUDED
 #define _HAL_USART_OS_H_INCLUDED
 
-#include "hal_io.h"
 #include <hal_rtos.h>
 #include <hpl_usart_async.h>
 #include <utils_ringbuffer.h>
+
+#include "hal_io.h"
 
 /**
  * \addtogroup doc_driver_hal_usart_os
@@ -60,20 +61,20 @@ struct usart_os_descriptor;
  * \brief Asynchronous USART descriptor structure
  */
 struct usart_os_descriptor {
-	struct io_descriptor       io;
-	struct _usart_async_device device;
+  struct io_descriptor io;
+  struct _usart_async_device device;
 
-	struct ringbuffer rx;
-	uint8_t *         rx_buffer;
-	uint16_t          rx_size;
-	uint16_t          rx_length;
+  struct ringbuffer rx;
+  uint8_t *rx_buffer;
+  uint16_t rx_size;
+  uint16_t rx_length;
 
-	uint8_t *tx_buffer;
-	uint16_t tx_por;
-	uint16_t tx_buffer_length;
+  uint8_t *tx_buffer;
+  uint16_t tx_por;
+  uint16_t tx_buffer_length;
 
-	sem_t rx_sem;
-	sem_t tx_sem;
+  sem_t rx_sem;
+  sem_t tx_sem;
 };
 /**
  * \brief Initialize USART interface
@@ -83,18 +84,18 @@ struct usart_os_descriptor {
  * It checks if the given hardware is not initialized and if the given hardware
  * is permitted to be initialized.
  *
- * \param[out] descr A USART descriptor which is used to communicate via the USART
- * \param[in] hw The pointer to the hardware instance
- * \param[in] rx_buffer An RX buffer
- * \param[in] rx_buffer_length The length of the buffer above
+ * \param[out] descr A USART descriptor which is used to communicate via the
+ * USART \param[in] hw The pointer to the hardware instance \param[in] rx_buffer
+ * An RX buffer \param[in] rx_buffer_length The length of the buffer above
  *
  * \return Initialization status.
  * \retval -1 Passed parameters were invalid or the interface is already
  * initialized
  * \retval 0 The initialization is completed successfully
  */
-int32_t usart_os_init(struct usart_os_descriptor *const descr, void *const hw, uint8_t *const rx_buffer,
-                      const uint16_t rx_buffer_length, void *const func);
+int32_t usart_os_init(struct usart_os_descriptor *const descr, void *const hw,
+                      uint8_t *const rx_buffer, const uint16_t rx_buffer_length,
+                      void *const func);
 
 /**
  * \brief Deinitialize USART interface
@@ -147,7 +148,8 @@ int32_t usart_os_disable(struct usart_os_descriptor *const descr);
  * deinitialized
  * \retval 0 The retrieving is completed successfully
  */
-int32_t usart_os_get_io(struct usart_os_descriptor *const descr, struct io_descriptor **io);
+int32_t usart_os_get_io(struct usart_os_descriptor *const descr,
+                        struct io_descriptor **io);
 
 /**
  * \brief Specify action for flow control pins
@@ -164,7 +166,8 @@ int32_t usart_os_get_io(struct usart_os_descriptor *const descr, struct io_descr
  * \retval -1 Passed parameters were invalid or the interface is not initialized
  * \retval 0 The flow control action is set successfully
  */
-int32_t usart_os_set_flow_control(struct usart_os_descriptor *const descr, const union usart_flow_control_state state);
+int32_t usart_os_set_flow_control(struct usart_os_descriptor *const descr,
+                                  const union usart_flow_control_state state);
 
 /**
  * \brief Set USART baud rate
@@ -176,7 +179,8 @@ int32_t usart_os_set_flow_control(struct usart_os_descriptor *const descr, const
  * \retval -1 Passed parameters were invalid or the interface is not initialized
  * \retval 0 The flow control action is set successfully
  */
-int32_t usart_os_set_baud_rate(struct usart_os_descriptor *const descr, const uint32_t baud_rate);
+int32_t usart_os_set_baud_rate(struct usart_os_descriptor *const descr,
+                               const uint32_t baud_rate);
 
 /**
  * \brief Set USART data order
@@ -188,7 +192,8 @@ int32_t usart_os_set_baud_rate(struct usart_os_descriptor *const descr, const ui
  * \retval -1 Passed parameters were invalid or the interface is not initialized
  * \retval 0 The flow control action is set successfully
  */
-int32_t usart_os_set_data_order(struct usart_os_descriptor *const descr, const enum usart_data_order data_order);
+int32_t usart_os_set_data_order(struct usart_os_descriptor *const descr,
+                                const enum usart_data_order data_order);
 
 /**
  * \brief Set USART mode
@@ -200,7 +205,8 @@ int32_t usart_os_set_data_order(struct usart_os_descriptor *const descr, const e
  * \retval -1 Passed parameters were invalid or the interface is not initialized
  * \retval 0 The flow control action is set successfully
  */
-int32_t usart_os_set_mode(struct usart_os_descriptor *const descr, const enum usart_mode mode);
+int32_t usart_os_set_mode(struct usart_os_descriptor *const descr,
+                          const enum usart_mode mode);
 
 /**
  * \brief Set USART parity
@@ -212,7 +218,8 @@ int32_t usart_os_set_mode(struct usart_os_descriptor *const descr, const enum us
  * \retval -1 Passed parameters were invalid or the interface is not initialized
  * \retval 0 The flow control action is set successfully
  */
-int32_t usart_os_set_parity(struct usart_os_descriptor *const descr, const enum usart_parity parity);
+int32_t usart_os_set_parity(struct usart_os_descriptor *const descr,
+                            const enum usart_parity parity);
 
 /**
  * \brief Set USART stop bits
@@ -224,7 +231,8 @@ int32_t usart_os_set_parity(struct usart_os_descriptor *const descr, const enum 
  * \retval -1 Passed parameters were invalid or the interface is not initialized
  * \retval 0 The flow control action is set successfully
  */
-int32_t usart_os_set_stopbits(struct usart_os_descriptor *const descr, const enum usart_stop_bits stop_bits);
+int32_t usart_os_set_stopbits(struct usart_os_descriptor *const descr,
+                              const enum usart_stop_bits stop_bits);
 
 /**
  * \brief Set USART character size
@@ -236,7 +244,8 @@ int32_t usart_os_set_stopbits(struct usart_os_descriptor *const descr, const enu
  * \retval -1 Passed parameters were invalid or the interface is not initialized
  * \retval 0 The flow control action is set successfully
  */
-int32_t usart_os_set_character_size(struct usart_os_descriptor *const descr, const enum usart_character_size size);
+int32_t usart_os_set_character_size(struct usart_os_descriptor *const descr,
+                                    const enum usart_character_size size);
 
 /**
  * \brief Retrieve the state of flow control pins
@@ -254,8 +263,9 @@ int32_t usart_os_set_character_size(struct usart_os_descriptor *const descr, con
  * \retval -1 Passed parameters were invalid or the interface is not initialized
  * \retval 0 The flow control state is retrieved successfully
  */
-int32_t usart_os_flow_control_status(const struct usart_os_descriptor *const descr,
-                                     union usart_flow_control_state *const   state);
+int32_t usart_os_flow_control_status(
+    const struct usart_os_descriptor *const descr,
+    union usart_flow_control_state *const state);
 
 /**
  * \brief flush USART ringbuf
