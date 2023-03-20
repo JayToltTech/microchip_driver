@@ -3,41 +3,32 @@
  *
  * \brief SAM ICM
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (c) 2016-2018 Microchip Technology Inc. and its subsidiaries.
  *
  * \asf_license_start
  *
  * \page License
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ * Subject to your compliance with these terms, you may use Microchip
+ * software and any derivatives exclusively with Microchip products.
+ * It is your responsibility to comply with third party license terms applicable
+ * to your use of third party software (including open source software) that
+ * may accompany Microchip software.
  *
- * 1. Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- * 3. The name of Atmel may not be used to endorse or promote products derived
- *    from this software without specific prior written permission.
- *
- * 4. This software may only be redistributed and used in connection with an
- *    Atmel microcontroller product.
- *
- * THIS SOFTWARE IS PROVIDED BY ATMEL "AS IS" AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE
- * EXPRESSLY AND SPECIFICALLY DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
- * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES,
+ * WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE,
+ * INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY,
+ * AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT WILL MICROCHIP BE
+ * LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUENTIAL
+ * LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND WHATSOEVER RELATED TO THE
+ * SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS BEEN ADVISED OF THE
+ * POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE FULLEST EXTENT
+ * ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN ANY WAY
+ * RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+ * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
  *
  * \asf_license_stop
+ *
  */
 
 #ifdef _SAME54_ICM_COMPONENT_
@@ -486,143 +477,6 @@ static inline void hri_icm_clear_IMR_reg(const void *const hw, hri_icm_imr_reg_t
 	((Icm *)hw)->IDR.reg = mask;
 }
 
-static inline void hri_icm_write_CTRL_reg(const void *const hw, hri_icm_ctrl_reg_t data)
-{
-	ICM_CRITICAL_SECTION_ENTER();
-	((Icm *)hw)->CTRL.reg = data;
-	ICM_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_icm_write_UIHVAL_reg(const void *const hw, uint8_t index, hri_icm_uihval_reg_t data)
-{
-	ICM_CRITICAL_SECTION_ENTER();
-	((Icm *)hw)->UIHVAL[index].reg = data;
-	ICM_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_icm_set_CFG_reg(const void *const hw, hri_icm_cfg_reg_t mask)
-{
-	ICM_CRITICAL_SECTION_ENTER();
-	((Icm *)hw)->CFG.reg |= mask;
-	ICM_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_icm_cfg_reg_t hri_icm_get_CFG_reg(const void *const hw, hri_icm_cfg_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Icm *)hw)->CFG.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_icm_write_CFG_reg(const void *const hw, hri_icm_cfg_reg_t data)
-{
-	ICM_CRITICAL_SECTION_ENTER();
-	((Icm *)hw)->CFG.reg = data;
-	ICM_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_icm_clear_CFG_reg(const void *const hw, hri_icm_cfg_reg_t mask)
-{
-	ICM_CRITICAL_SECTION_ENTER();
-	((Icm *)hw)->CFG.reg &= ~mask;
-	ICM_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_icm_toggle_CFG_reg(const void *const hw, hri_icm_cfg_reg_t mask)
-{
-	ICM_CRITICAL_SECTION_ENTER();
-	((Icm *)hw)->CFG.reg ^= mask;
-	ICM_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_icm_cfg_reg_t hri_icm_read_CFG_reg(const void *const hw)
-{
-	return ((Icm *)hw)->CFG.reg;
-}
-
-static inline void hri_icm_set_DSCR_reg(const void *const hw, hri_icm_dscr_reg_t mask)
-{
-	ICM_CRITICAL_SECTION_ENTER();
-	((Icm *)hw)->DSCR.reg |= mask;
-	ICM_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_icm_dscr_reg_t hri_icm_get_DSCR_reg(const void *const hw, hri_icm_dscr_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Icm *)hw)->DSCR.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_icm_write_DSCR_reg(const void *const hw, hri_icm_dscr_reg_t data)
-{
-	ICM_CRITICAL_SECTION_ENTER();
-	((Icm *)hw)->DSCR.reg = data;
-	ICM_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_icm_clear_DSCR_reg(const void *const hw, hri_icm_dscr_reg_t mask)
-{
-	ICM_CRITICAL_SECTION_ENTER();
-	((Icm *)hw)->DSCR.reg &= ~mask;
-	ICM_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_icm_toggle_DSCR_reg(const void *const hw, hri_icm_dscr_reg_t mask)
-{
-	ICM_CRITICAL_SECTION_ENTER();
-	((Icm *)hw)->DSCR.reg ^= mask;
-	ICM_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_icm_dscr_reg_t hri_icm_read_DSCR_reg(const void *const hw)
-{
-	return ((Icm *)hw)->DSCR.reg;
-}
-
-static inline void hri_icm_set_HASH_reg(const void *const hw, hri_icm_hash_reg_t mask)
-{
-	ICM_CRITICAL_SECTION_ENTER();
-	((Icm *)hw)->HASH.reg |= mask;
-	ICM_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_icm_hash_reg_t hri_icm_get_HASH_reg(const void *const hw, hri_icm_hash_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Icm *)hw)->HASH.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_icm_write_HASH_reg(const void *const hw, hri_icm_hash_reg_t data)
-{
-	ICM_CRITICAL_SECTION_ENTER();
-	((Icm *)hw)->HASH.reg = data;
-	ICM_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_icm_clear_HASH_reg(const void *const hw, hri_icm_hash_reg_t mask)
-{
-	ICM_CRITICAL_SECTION_ENTER();
-	((Icm *)hw)->HASH.reg &= ~mask;
-	ICM_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_icm_toggle_HASH_reg(const void *const hw, hri_icm_hash_reg_t mask)
-{
-	ICM_CRITICAL_SECTION_ENTER();
-	((Icm *)hw)->HASH.reg ^= mask;
-	ICM_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_icm_hash_reg_t hri_icm_read_HASH_reg(const void *const hw)
-{
-	return ((Icm *)hw)->HASH.reg;
-}
-
 static inline bool hri_icm_get_SR_ENABLE_bit(const void *const hw)
 {
 	return (((Icm *)hw)->SR.reg & ICM_SR_ENABLE) >> ICM_SR_ENABLE_Pos;
@@ -760,6 +614,143 @@ static inline hri_icm_uasr_reg_t hri_icm_get_UASR_reg(const void *const hw, hri_
 static inline hri_icm_uasr_reg_t hri_icm_read_UASR_reg(const void *const hw)
 {
 	return ((Icm *)hw)->UASR.reg;
+}
+
+static inline void hri_icm_set_CFG_reg(const void *const hw, hri_icm_cfg_reg_t mask)
+{
+	ICM_CRITICAL_SECTION_ENTER();
+	((Icm *)hw)->CFG.reg |= mask;
+	ICM_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_icm_cfg_reg_t hri_icm_get_CFG_reg(const void *const hw, hri_icm_cfg_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Icm *)hw)->CFG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_icm_write_CFG_reg(const void *const hw, hri_icm_cfg_reg_t data)
+{
+	ICM_CRITICAL_SECTION_ENTER();
+	((Icm *)hw)->CFG.reg = data;
+	ICM_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_icm_clear_CFG_reg(const void *const hw, hri_icm_cfg_reg_t mask)
+{
+	ICM_CRITICAL_SECTION_ENTER();
+	((Icm *)hw)->CFG.reg &= ~mask;
+	ICM_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_icm_toggle_CFG_reg(const void *const hw, hri_icm_cfg_reg_t mask)
+{
+	ICM_CRITICAL_SECTION_ENTER();
+	((Icm *)hw)->CFG.reg ^= mask;
+	ICM_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_icm_cfg_reg_t hri_icm_read_CFG_reg(const void *const hw)
+{
+	return ((Icm *)hw)->CFG.reg;
+}
+
+static inline void hri_icm_set_DSCR_reg(const void *const hw, hri_icm_dscr_reg_t mask)
+{
+	ICM_CRITICAL_SECTION_ENTER();
+	((Icm *)hw)->DSCR.reg |= mask;
+	ICM_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_icm_dscr_reg_t hri_icm_get_DSCR_reg(const void *const hw, hri_icm_dscr_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Icm *)hw)->DSCR.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_icm_write_DSCR_reg(const void *const hw, hri_icm_dscr_reg_t data)
+{
+	ICM_CRITICAL_SECTION_ENTER();
+	((Icm *)hw)->DSCR.reg = data;
+	ICM_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_icm_clear_DSCR_reg(const void *const hw, hri_icm_dscr_reg_t mask)
+{
+	ICM_CRITICAL_SECTION_ENTER();
+	((Icm *)hw)->DSCR.reg &= ~mask;
+	ICM_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_icm_toggle_DSCR_reg(const void *const hw, hri_icm_dscr_reg_t mask)
+{
+	ICM_CRITICAL_SECTION_ENTER();
+	((Icm *)hw)->DSCR.reg ^= mask;
+	ICM_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_icm_dscr_reg_t hri_icm_read_DSCR_reg(const void *const hw)
+{
+	return ((Icm *)hw)->DSCR.reg;
+}
+
+static inline void hri_icm_set_HASH_reg(const void *const hw, hri_icm_hash_reg_t mask)
+{
+	ICM_CRITICAL_SECTION_ENTER();
+	((Icm *)hw)->HASH.reg |= mask;
+	ICM_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_icm_hash_reg_t hri_icm_get_HASH_reg(const void *const hw, hri_icm_hash_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Icm *)hw)->HASH.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_icm_write_HASH_reg(const void *const hw, hri_icm_hash_reg_t data)
+{
+	ICM_CRITICAL_SECTION_ENTER();
+	((Icm *)hw)->HASH.reg = data;
+	ICM_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_icm_clear_HASH_reg(const void *const hw, hri_icm_hash_reg_t mask)
+{
+	ICM_CRITICAL_SECTION_ENTER();
+	((Icm *)hw)->HASH.reg &= ~mask;
+	ICM_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_icm_toggle_HASH_reg(const void *const hw, hri_icm_hash_reg_t mask)
+{
+	ICM_CRITICAL_SECTION_ENTER();
+	((Icm *)hw)->HASH.reg ^= mask;
+	ICM_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_icm_hash_reg_t hri_icm_read_HASH_reg(const void *const hw)
+{
+	return ((Icm *)hw)->HASH.reg;
+}
+
+static inline void hri_icm_write_CTRL_reg(const void *const hw, hri_icm_ctrl_reg_t data)
+{
+	ICM_CRITICAL_SECTION_ENTER();
+	((Icm *)hw)->CTRL.reg = data;
+	ICM_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_icm_write_UIHVAL_reg(const void *const hw, uint8_t index, hri_icm_uihval_reg_t data)
+{
+	ICM_CRITICAL_SECTION_ENTER();
+	((Icm *)hw)->UIHVAL[index].reg = data;
+	ICM_CRITICAL_SECTION_LEAVE();
 }
 
 #ifdef __cplusplus

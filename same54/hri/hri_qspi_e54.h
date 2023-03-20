@@ -3,41 +3,32 @@
  *
  * \brief SAM QSPI
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (c) 2016-2018 Microchip Technology Inc. and its subsidiaries.
  *
  * \asf_license_start
  *
  * \page License
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ * Subject to your compliance with these terms, you may use Microchip
+ * software and any derivatives exclusively with Microchip products.
+ * It is your responsibility to comply with third party license terms applicable
+ * to your use of third party software (including open source software) that
+ * may accompany Microchip software.
  *
- * 1. Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- * 3. The name of Atmel may not be used to endorse or promote products derived
- *    from this software without specific prior written permission.
- *
- * 4. This software may only be redistributed and used in connection with an
- *    Atmel microcontroller product.
- *
- * THIS SOFTWARE IS PROVIDED BY ATMEL "AS IS" AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE
- * EXPRESSLY AND SPECIFICALLY DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
- * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES,
+ * WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE,
+ * INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY,
+ * AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT WILL MICROCHIP BE
+ * LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUENTIAL
+ * LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND WHATSOEVER RELATED TO THE
+ * SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS BEEN ADVISED OF THE
+ * POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE FULLEST EXTENT
+ * ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN ANY WAY
+ * RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+ * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
  *
  * \asf_license_stop
+ *
  */
 
 #ifdef _SAME54_QSPI_COMPONENT_
@@ -72,6 +63,144 @@ typedef uint32_t hri_qspi_scrambctrl_reg_t;
 typedef uint32_t hri_qspi_scrambkey_reg_t;
 typedef uint32_t hri_qspi_status_reg_t;
 typedef uint32_t hri_qspi_txdata_reg_t;
+
+static inline bool hri_qspi_get_INTFLAG_RXC_bit(const void *const hw)
+{
+	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_RXC) >> QSPI_INTFLAG_RXC_Pos;
+}
+
+static inline void hri_qspi_clear_INTFLAG_RXC_bit(const void *const hw)
+{
+	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_RXC;
+}
+
+static inline bool hri_qspi_get_INTFLAG_DRE_bit(const void *const hw)
+{
+	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_DRE) >> QSPI_INTFLAG_DRE_Pos;
+}
+
+static inline void hri_qspi_clear_INTFLAG_DRE_bit(const void *const hw)
+{
+	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_DRE;
+}
+
+static inline bool hri_qspi_get_INTFLAG_TXC_bit(const void *const hw)
+{
+	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_TXC) >> QSPI_INTFLAG_TXC_Pos;
+}
+
+static inline void hri_qspi_clear_INTFLAG_TXC_bit(const void *const hw)
+{
+	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_TXC;
+}
+
+static inline bool hri_qspi_get_INTFLAG_ERROR_bit(const void *const hw)
+{
+	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_ERROR) >> QSPI_INTFLAG_ERROR_Pos;
+}
+
+static inline void hri_qspi_clear_INTFLAG_ERROR_bit(const void *const hw)
+{
+	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_ERROR;
+}
+
+static inline bool hri_qspi_get_INTFLAG_CSRISE_bit(const void *const hw)
+{
+	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_CSRISE) >> QSPI_INTFLAG_CSRISE_Pos;
+}
+
+static inline void hri_qspi_clear_INTFLAG_CSRISE_bit(const void *const hw)
+{
+	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_CSRISE;
+}
+
+static inline bool hri_qspi_get_INTFLAG_INSTREND_bit(const void *const hw)
+{
+	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_INSTREND) >> QSPI_INTFLAG_INSTREND_Pos;
+}
+
+static inline void hri_qspi_clear_INTFLAG_INSTREND_bit(const void *const hw)
+{
+	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_INSTREND;
+}
+
+static inline bool hri_qspi_get_interrupt_RXC_bit(const void *const hw)
+{
+	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_RXC) >> QSPI_INTFLAG_RXC_Pos;
+}
+
+static inline void hri_qspi_clear_interrupt_RXC_bit(const void *const hw)
+{
+	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_RXC;
+}
+
+static inline bool hri_qspi_get_interrupt_DRE_bit(const void *const hw)
+{
+	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_DRE) >> QSPI_INTFLAG_DRE_Pos;
+}
+
+static inline void hri_qspi_clear_interrupt_DRE_bit(const void *const hw)
+{
+	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_DRE;
+}
+
+static inline bool hri_qspi_get_interrupt_TXC_bit(const void *const hw)
+{
+	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_TXC) >> QSPI_INTFLAG_TXC_Pos;
+}
+
+static inline void hri_qspi_clear_interrupt_TXC_bit(const void *const hw)
+{
+	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_TXC;
+}
+
+static inline bool hri_qspi_get_interrupt_ERROR_bit(const void *const hw)
+{
+	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_ERROR) >> QSPI_INTFLAG_ERROR_Pos;
+}
+
+static inline void hri_qspi_clear_interrupt_ERROR_bit(const void *const hw)
+{
+	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_ERROR;
+}
+
+static inline bool hri_qspi_get_interrupt_CSRISE_bit(const void *const hw)
+{
+	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_CSRISE) >> QSPI_INTFLAG_CSRISE_Pos;
+}
+
+static inline void hri_qspi_clear_interrupt_CSRISE_bit(const void *const hw)
+{
+	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_CSRISE;
+}
+
+static inline bool hri_qspi_get_interrupt_INSTREND_bit(const void *const hw)
+{
+	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_INSTREND) >> QSPI_INTFLAG_INSTREND_Pos;
+}
+
+static inline void hri_qspi_clear_interrupt_INSTREND_bit(const void *const hw)
+{
+	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_INSTREND;
+}
+
+static inline hri_qspi_intflag_reg_t hri_qspi_get_INTFLAG_reg(const void *const hw, hri_qspi_intflag_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Qspi *)hw)->INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_qspi_intflag_reg_t hri_qspi_read_INTFLAG_reg(const void *const hw)
+{
+	return ((Qspi *)hw)->INTFLAG.reg;
+}
+
+static inline void hri_qspi_clear_INTFLAG_reg(const void *const hw, hri_qspi_intflag_reg_t mask)
+{
+	((Qspi *)hw)->INTFLAG.reg = mask;
+}
 
 static inline void hri_qspi_set_INTEN_RXC_bit(const void *const hw)
 {
@@ -246,156 +375,50 @@ static inline void hri_qspi_clear_INTEN_reg(const void *const hw, hri_qspi_inten
 	((Qspi *)hw)->INTENCLR.reg = mask;
 }
 
-static inline bool hri_qspi_get_INTFLAG_RXC_bit(const void *const hw)
+static inline hri_qspi_rxdata_reg_t hri_qspi_get_RXDATA_DATA_bf(const void *const hw, hri_qspi_rxdata_reg_t mask)
 {
-	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_RXC) >> QSPI_INTFLAG_RXC_Pos;
+	return (((Qspi *)hw)->RXDATA.reg & QSPI_RXDATA_DATA(mask)) >> QSPI_RXDATA_DATA_Pos;
 }
 
-static inline void hri_qspi_clear_INTFLAG_RXC_bit(const void *const hw)
+static inline hri_qspi_rxdata_reg_t hri_qspi_read_RXDATA_DATA_bf(const void *const hw)
 {
-	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_RXC;
+	return (((Qspi *)hw)->RXDATA.reg & QSPI_RXDATA_DATA_Msk) >> QSPI_RXDATA_DATA_Pos;
 }
 
-static inline bool hri_qspi_get_INTFLAG_DRE_bit(const void *const hw)
-{
-	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_DRE) >> QSPI_INTFLAG_DRE_Pos;
-}
-
-static inline void hri_qspi_clear_INTFLAG_DRE_bit(const void *const hw)
-{
-	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_DRE;
-}
-
-static inline bool hri_qspi_get_INTFLAG_TXC_bit(const void *const hw)
-{
-	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_TXC) >> QSPI_INTFLAG_TXC_Pos;
-}
-
-static inline void hri_qspi_clear_INTFLAG_TXC_bit(const void *const hw)
-{
-	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_TXC;
-}
-
-static inline bool hri_qspi_get_INTFLAG_ERROR_bit(const void *const hw)
-{
-	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_ERROR) >> QSPI_INTFLAG_ERROR_Pos;
-}
-
-static inline void hri_qspi_clear_INTFLAG_ERROR_bit(const void *const hw)
-{
-	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_ERROR;
-}
-
-static inline bool hri_qspi_get_INTFLAG_CSRISE_bit(const void *const hw)
-{
-	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_CSRISE) >> QSPI_INTFLAG_CSRISE_Pos;
-}
-
-static inline void hri_qspi_clear_INTFLAG_CSRISE_bit(const void *const hw)
-{
-	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_CSRISE;
-}
-
-static inline bool hri_qspi_get_INTFLAG_INSTREND_bit(const void *const hw)
-{
-	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_INSTREND) >> QSPI_INTFLAG_INSTREND_Pos;
-}
-
-static inline void hri_qspi_clear_INTFLAG_INSTREND_bit(const void *const hw)
-{
-	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_INSTREND;
-}
-
-static inline bool hri_qspi_get_interrupt_RXC_bit(const void *const hw)
-{
-	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_RXC) >> QSPI_INTFLAG_RXC_Pos;
-}
-
-static inline void hri_qspi_clear_interrupt_RXC_bit(const void *const hw)
-{
-	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_RXC;
-}
-
-static inline bool hri_qspi_get_interrupt_DRE_bit(const void *const hw)
-{
-	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_DRE) >> QSPI_INTFLAG_DRE_Pos;
-}
-
-static inline void hri_qspi_clear_interrupt_DRE_bit(const void *const hw)
-{
-	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_DRE;
-}
-
-static inline bool hri_qspi_get_interrupt_TXC_bit(const void *const hw)
-{
-	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_TXC) >> QSPI_INTFLAG_TXC_Pos;
-}
-
-static inline void hri_qspi_clear_interrupt_TXC_bit(const void *const hw)
-{
-	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_TXC;
-}
-
-static inline bool hri_qspi_get_interrupt_ERROR_bit(const void *const hw)
-{
-	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_ERROR) >> QSPI_INTFLAG_ERROR_Pos;
-}
-
-static inline void hri_qspi_clear_interrupt_ERROR_bit(const void *const hw)
-{
-	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_ERROR;
-}
-
-static inline bool hri_qspi_get_interrupt_CSRISE_bit(const void *const hw)
-{
-	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_CSRISE) >> QSPI_INTFLAG_CSRISE_Pos;
-}
-
-static inline void hri_qspi_clear_interrupt_CSRISE_bit(const void *const hw)
-{
-	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_CSRISE;
-}
-
-static inline bool hri_qspi_get_interrupt_INSTREND_bit(const void *const hw)
-{
-	return (((Qspi *)hw)->INTFLAG.reg & QSPI_INTFLAG_INSTREND) >> QSPI_INTFLAG_INSTREND_Pos;
-}
-
-static inline void hri_qspi_clear_interrupt_INSTREND_bit(const void *const hw)
-{
-	((Qspi *)hw)->INTFLAG.reg = QSPI_INTFLAG_INSTREND;
-}
-
-static inline hri_qspi_intflag_reg_t hri_qspi_get_INTFLAG_reg(const void *const hw, hri_qspi_intflag_reg_t mask)
+static inline hri_qspi_rxdata_reg_t hri_qspi_get_RXDATA_reg(const void *const hw, hri_qspi_rxdata_reg_t mask)
 {
 	uint32_t tmp;
-	tmp = ((Qspi *)hw)->INTFLAG.reg;
+	tmp = ((Qspi *)hw)->RXDATA.reg;
 	tmp &= mask;
 	return tmp;
 }
 
-static inline hri_qspi_intflag_reg_t hri_qspi_read_INTFLAG_reg(const void *const hw)
+static inline hri_qspi_rxdata_reg_t hri_qspi_read_RXDATA_reg(const void *const hw)
 {
-	return ((Qspi *)hw)->INTFLAG.reg;
+	return ((Qspi *)hw)->RXDATA.reg;
 }
 
-static inline void hri_qspi_clear_INTFLAG_reg(const void *const hw, hri_qspi_intflag_reg_t mask)
+static inline bool hri_qspi_get_STATUS_ENABLE_bit(const void *const hw)
 {
-	((Qspi *)hw)->INTFLAG.reg = mask;
+	return (((Qspi *)hw)->STATUS.reg & QSPI_STATUS_ENABLE) >> QSPI_STATUS_ENABLE_Pos;
 }
 
-static inline void hri_qspi_write_TXDATA_reg(const void *const hw, hri_qspi_txdata_reg_t data)
+static inline bool hri_qspi_get_STATUS_CSSTATUS_bit(const void *const hw)
 {
-	QSPI_CRITICAL_SECTION_ENTER();
-	((Qspi *)hw)->TXDATA.reg = data;
-	QSPI_CRITICAL_SECTION_LEAVE();
+	return (((Qspi *)hw)->STATUS.reg & QSPI_STATUS_CSSTATUS) >> QSPI_STATUS_CSSTATUS_Pos;
 }
 
-static inline void hri_qspi_write_SCRAMBKEY_reg(const void *const hw, hri_qspi_scrambkey_reg_t data)
+static inline hri_qspi_status_reg_t hri_qspi_get_STATUS_reg(const void *const hw, hri_qspi_status_reg_t mask)
 {
-	QSPI_CRITICAL_SECTION_ENTER();
-	((Qspi *)hw)->SCRAMBKEY.reg = data;
-	QSPI_CRITICAL_SECTION_LEAVE();
+	uint32_t tmp;
+	tmp = ((Qspi *)hw)->STATUS.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_qspi_status_reg_t hri_qspi_read_STATUS_reg(const void *const hw)
+{
+	return ((Qspi *)hw)->STATUS.reg;
 }
 
 static inline void hri_qspi_set_CTRLA_SWRST_bit(const void *const hw)
@@ -2013,50 +2036,18 @@ static inline hri_qspi_scrambctrl_reg_t hri_qspi_read_SCRAMBCTRL_reg(const void 
 	return ((Qspi *)hw)->SCRAMBCTRL.reg;
 }
 
-static inline hri_qspi_rxdata_reg_t hri_qspi_get_RXDATA_DATA_bf(const void *const hw, hri_qspi_rxdata_reg_t mask)
+static inline void hri_qspi_write_TXDATA_reg(const void *const hw, hri_qspi_txdata_reg_t data)
 {
-	return (((Qspi *)hw)->RXDATA.reg & QSPI_RXDATA_DATA(mask)) >> QSPI_RXDATA_DATA_Pos;
+	QSPI_CRITICAL_SECTION_ENTER();
+	((Qspi *)hw)->TXDATA.reg = data;
+	QSPI_CRITICAL_SECTION_LEAVE();
 }
 
-static inline hri_qspi_rxdata_reg_t hri_qspi_read_RXDATA_DATA_bf(const void *const hw)
+static inline void hri_qspi_write_SCRAMBKEY_reg(const void *const hw, hri_qspi_scrambkey_reg_t data)
 {
-	return (((Qspi *)hw)->RXDATA.reg & QSPI_RXDATA_DATA_Msk) >> QSPI_RXDATA_DATA_Pos;
-}
-
-static inline hri_qspi_rxdata_reg_t hri_qspi_get_RXDATA_reg(const void *const hw, hri_qspi_rxdata_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Qspi *)hw)->RXDATA.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_qspi_rxdata_reg_t hri_qspi_read_RXDATA_reg(const void *const hw)
-{
-	return ((Qspi *)hw)->RXDATA.reg;
-}
-
-static inline bool hri_qspi_get_STATUS_ENABLE_bit(const void *const hw)
-{
-	return (((Qspi *)hw)->STATUS.reg & QSPI_STATUS_ENABLE) >> QSPI_STATUS_ENABLE_Pos;
-}
-
-static inline bool hri_qspi_get_STATUS_CSSTATUS_bit(const void *const hw)
-{
-	return (((Qspi *)hw)->STATUS.reg & QSPI_STATUS_CSSTATUS) >> QSPI_STATUS_CSSTATUS_Pos;
-}
-
-static inline hri_qspi_status_reg_t hri_qspi_get_STATUS_reg(const void *const hw, hri_qspi_status_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Qspi *)hw)->STATUS.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_qspi_status_reg_t hri_qspi_read_STATUS_reg(const void *const hw)
-{
-	return ((Qspi *)hw)->STATUS.reg;
+	QSPI_CRITICAL_SECTION_ENTER();
+	((Qspi *)hw)->SCRAMBKEY.reg = data;
+	QSPI_CRITICAL_SECTION_LEAVE();
 }
 
 #ifdef __cplusplus

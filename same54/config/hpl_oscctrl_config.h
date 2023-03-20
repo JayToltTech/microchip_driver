@@ -121,7 +121,7 @@
 // <i> Indicates whether configuration for XOSC1 is enabled or not
 // <id> enable_xosc1
 #ifndef CONF_XOSC1_CONFIG
-#define CONF_XOSC1_CONFIG 0
+#define CONF_XOSC1_CONFIG 1
 #endif
 
 // <o> Frequency <8000000-48000000>
@@ -136,7 +136,7 @@
 // <i> Indicates whether External Multipurpose Crystal Oscillator is enabled or not
 // <id> xosc1_arch_enable
 #ifndef CONF_XOSC1_ENABLE
-#define CONF_XOSC1_ENABLE 0
+#define CONF_XOSC1_ENABLE 1
 #endif
 
 // <o> Start-Up Time
@@ -234,7 +234,7 @@
 // <i> Indicates whether configuration for DFLL is enabled or not
 // <id> enable_dfll
 #ifndef CONF_DFLL_CONFIG
-#define CONF_DFLL_CONFIG 1
+#define CONF_DFLL_CONFIG 0
 #endif
 
 // <y> Reference Clock Source
@@ -261,7 +261,7 @@
 // <i> Indicates whether DFLL is enabled or not
 // <id> dfll_arch_enable
 #ifndef CONF_DFLL_ENABLE
-#define CONF_DFLL_ENABLE 1
+#define CONF_DFLL_ENABLE 0
 #endif
 
 // <q> On Demand Control
@@ -282,7 +282,7 @@
 // <i> Indicates whether USB Clock Recovery Mode is enabled or not
 // <id> dfll_arch_usbcrm
 #ifndef CONF_DFLL_USBCRM
-#define CONF_DFLL_USBCRM 1
+#define CONF_DFLL_USBCRM 0
 #endif
 
 // <q> Wait Lock
@@ -310,7 +310,7 @@
 // <i> Indicates whether Chill Cycle Disable is enabled or not
 // <id> dfll_arch_ccdis
 #ifndef CONF_DFLL_CCDIS
-#define CONF_DFLL_CCDIS 1
+#define CONF_DFLL_CCDIS 0
 #endif
 
 // <q> Lose Lock After Wake
@@ -382,7 +382,7 @@
 // <i> Indicates whether configuration for FDPLL0 is enabled or not
 // <id> enable_fdpll0
 #ifndef CONF_FDPLL0_CONFIG
-#define CONF_FDPLL0_CONFIG 1
+#define CONF_FDPLL0_CONFIG 0
 #endif
 
 // <y> Reference Clock Source
@@ -404,7 +404,7 @@
 // <i> Select the clock source.
 // <id> fdpll0_ref_clock
 #ifndef CONF_FDPLL0_GCLK
-#define CONF_FDPLL0_GCLK GCLK_PCHCTRL_GEN_GCLK5_Val
+#define CONF_FDPLL0_GCLK GCLK_GENCTRL_SRC_XOSC32K
 #endif
 
 // <h> Digital Phase Locked Loop Control
@@ -412,7 +412,7 @@
 // <i> Indicates whether Digital Phase Locked Loop is enabled or not
 // <id> fdpll0_arch_enable
 #ifndef CONF_FDPLL0_ENABLE
-#define CONF_FDPLL0_ENABLE 1
+#define CONF_FDPLL0_ENABLE 0
 #endif
 
 // <q> On Demand Control
@@ -430,18 +430,21 @@
 #endif
 
 // <o> Loop Divider Ratio Fractional Part <0x0-0x1F>
+// <i> Value of LDRFRAC is calculated using Fclk_dpll=Fckr*(LDR+1+LDRFRAC/32) formula as given in datasheet. This value is directly written in to DPLLRATIO register
 // <id> fdpll0_ldrfrac
 #ifndef CONF_FDPLL0_LDRFRAC
-#define CONF_FDPLL0_LDRFRAC 0x0
+#define CONF_FDPLL0_LDRFRAC 0xd
 #endif
 
 // <o> Loop Divider Ratio Integer Part <0x0-0x1FFF>
+// <i> Value of LDR is calculated using Fclk_dpll=Fckr*(LDR+1+LDRFRAC/32) formula as given in datasheet. This value is directly written in to DPLLRATIO register
 // <id> fdpll0_ldr
 #ifndef CONF_FDPLL0_LDR
-#define CONF_FDPLL0_LDR 0x3b
+#define CONF_FDPLL0_LDR 0x5b7
 #endif
 
 // <o> Clock Divider <0x0-0x7FF>
+// <i> This Clock divider is only for XOSC clock input to DPLL
 // <id> fdpll0_clock_div
 #ifndef CONF_FDPLL0_DIV
 #define CONF_FDPLL0_DIV 0x0
@@ -485,7 +488,7 @@
 // <0x3=>XOSC1 clock reference
 // <id> fdpll0_arch_refclk
 #ifndef CONF_FDPLL0_REFCLK
-#define CONF_FDPLL0_REFCLK 0x0
+#define CONF_FDPLL0_REFCLK 0x1
 #endif
 
 // <q> Wake Up Fast
@@ -555,18 +558,21 @@
 #endif
 
 // <o> Loop Divider Ratio Fractional Part <0x0-0x1F>
+// <i> Value of LDRFRAC is calculated using Fclk_dpll=Fckr*(LDR+1+LDRFRAC/32) formula as given in datasheet. This value is directly written in to DPLLRATIO register
 // <id> fdpll1_ldrfrac
 #ifndef CONF_FDPLL1_LDRFRAC
 #define CONF_FDPLL1_LDRFRAC 0xd
 #endif
 
 // <o> Loop Divider Ratio Integer Part <0x0-0x1FFF>
+// <i> Value of LDR is calculated using Fclk_dpll=Fckr*(LDR+1+LDRFRAC/32) formula as given in datasheet. This value is directly written in to DPLLRATIO register
 // <id> fdpll1_ldr
 #ifndef CONF_FDPLL1_LDR
 #define CONF_FDPLL1_LDR 0x5b7
 #endif
 
 // <o> Clock Divider <0x0-0x7FF>
+// <i> This Clock divider is only for XOSC clock input to DPLL
 // <id> fdpll1_clock_div
 #ifndef CONF_FDPLL1_DIV
 #define CONF_FDPLL1_DIV 0x0

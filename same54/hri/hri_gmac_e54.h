@@ -3,41 +3,32 @@
  *
  * \brief SAM GMAC
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (c) 2016-2018 Microchip Technology Inc. and its subsidiaries.
  *
  * \asf_license_start
  *
  * \page License
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ * Subject to your compliance with these terms, you may use Microchip
+ * software and any derivatives exclusively with Microchip products.
+ * It is your responsibility to comply with third party license terms applicable
+ * to your use of third party software (including open source software) that
+ * may accompany Microchip software.
  *
- * 1. Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- * 3. The name of Atmel may not be used to endorse or promote products derived
- *    from this software without specific prior written permission.
- *
- * 4. This software may only be redistributed and used in connection with an
- *    Atmel microcontroller product.
- *
- * THIS SOFTWARE IS PROVIDED BY ATMEL "AS IS" AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE
- * EXPRESSLY AND SPECIFICALLY DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
- * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES,
+ * WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE,
+ * INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY,
+ * AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT WILL MICROCHIP BE
+ * LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUENTIAL
+ * LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND WHATSOEVER RELATED TO THE
+ * SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS BEEN ADVISED OF THE
+ * POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE FULLEST EXTENT
+ * ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN ANY WAY
+ * RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+ * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
  *
  * \asf_license_stop
+ *
  */
 
 #ifdef _SAME54_GMAC_COMPONENT_
@@ -955,1366 +946,6 @@ static inline void hri_gmac_write_IMR_reg(const void *const hw, hri_gmac_imr_reg
 static inline void hri_gmac_clear_IMR_reg(const void *const hw, hri_gmac_imr_reg_t mask)
 {
 	((Gmac *)hw)->IDR.reg = mask;
-}
-
-static inline void hri_gmac_write_TA_reg(const void *const hw, hri_gmac_ta_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TA.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_set_NCR_reg(const void *const hw, hri_gmac_ncr_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->NCR.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_ncr_reg_t hri_gmac_get_NCR_reg(const void *const hw, hri_gmac_ncr_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->NCR.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_NCR_reg(const void *const hw, hri_gmac_ncr_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->NCR.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_NCR_reg(const void *const hw, hri_gmac_ncr_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->NCR.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_NCR_reg(const void *const hw, hri_gmac_ncr_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->NCR.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_ncr_reg_t hri_gmac_read_NCR_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->NCR.reg;
-}
-
-static inline void hri_gmac_set_NCFGR_reg(const void *const hw, hri_gmac_ncfgr_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->NCFGR.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_ncfgr_reg_t hri_gmac_get_NCFGR_reg(const void *const hw, hri_gmac_ncfgr_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->NCFGR.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_NCFGR_reg(const void *const hw, hri_gmac_ncfgr_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->NCFGR.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_NCFGR_reg(const void *const hw, hri_gmac_ncfgr_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->NCFGR.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_NCFGR_reg(const void *const hw, hri_gmac_ncfgr_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->NCFGR.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_ncfgr_reg_t hri_gmac_read_NCFGR_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->NCFGR.reg;
-}
-
-static inline void hri_gmac_set_UR_reg(const void *const hw, hri_gmac_ur_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->UR.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_ur_reg_t hri_gmac_get_UR_reg(const void *const hw, hri_gmac_ur_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->UR.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_UR_reg(const void *const hw, hri_gmac_ur_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->UR.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_UR_reg(const void *const hw, hri_gmac_ur_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->UR.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_UR_reg(const void *const hw, hri_gmac_ur_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->UR.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_ur_reg_t hri_gmac_read_UR_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->UR.reg;
-}
-
-static inline void hri_gmac_set_DCFGR_reg(const void *const hw, hri_gmac_dcfgr_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->DCFGR.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_dcfgr_reg_t hri_gmac_get_DCFGR_reg(const void *const hw, hri_gmac_dcfgr_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->DCFGR.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_DCFGR_reg(const void *const hw, hri_gmac_dcfgr_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->DCFGR.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_DCFGR_reg(const void *const hw, hri_gmac_dcfgr_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->DCFGR.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_DCFGR_reg(const void *const hw, hri_gmac_dcfgr_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->DCFGR.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_dcfgr_reg_t hri_gmac_read_DCFGR_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->DCFGR.reg;
-}
-
-static inline void hri_gmac_set_TSR_reg(const void *const hw, hri_gmac_tsr_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSR.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tsr_reg_t hri_gmac_get_TSR_reg(const void *const hw, hri_gmac_tsr_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->TSR.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_TSR_reg(const void *const hw, hri_gmac_tsr_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSR.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_TSR_reg(const void *const hw, hri_gmac_tsr_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSR.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_TSR_reg(const void *const hw, hri_gmac_tsr_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSR.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tsr_reg_t hri_gmac_read_TSR_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->TSR.reg;
-}
-
-static inline void hri_gmac_set_RBQB_reg(const void *const hw, hri_gmac_rbqb_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->RBQB.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_rbqb_reg_t hri_gmac_get_RBQB_reg(const void *const hw, hri_gmac_rbqb_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->RBQB.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_RBQB_reg(const void *const hw, hri_gmac_rbqb_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->RBQB.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_RBQB_reg(const void *const hw, hri_gmac_rbqb_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->RBQB.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_RBQB_reg(const void *const hw, hri_gmac_rbqb_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->RBQB.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_rbqb_reg_t hri_gmac_read_RBQB_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->RBQB.reg;
-}
-
-static inline void hri_gmac_set_TBQB_reg(const void *const hw, hri_gmac_tbqb_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TBQB.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tbqb_reg_t hri_gmac_get_TBQB_reg(const void *const hw, hri_gmac_tbqb_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->TBQB.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_TBQB_reg(const void *const hw, hri_gmac_tbqb_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TBQB.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_TBQB_reg(const void *const hw, hri_gmac_tbqb_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TBQB.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_TBQB_reg(const void *const hw, hri_gmac_tbqb_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TBQB.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tbqb_reg_t hri_gmac_read_TBQB_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->TBQB.reg;
-}
-
-static inline void hri_gmac_set_RSR_reg(const void *const hw, hri_gmac_rsr_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->RSR.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_rsr_reg_t hri_gmac_get_RSR_reg(const void *const hw, hri_gmac_rsr_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->RSR.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_RSR_reg(const void *const hw, hri_gmac_rsr_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->RSR.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_RSR_reg(const void *const hw, hri_gmac_rsr_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->RSR.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_RSR_reg(const void *const hw, hri_gmac_rsr_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->RSR.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_rsr_reg_t hri_gmac_read_RSR_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->RSR.reg;
-}
-
-static inline void hri_gmac_set_ISR_reg(const void *const hw, hri_gmac_isr_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->ISR.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_isr_reg_t hri_gmac_get_ISR_reg(const void *const hw, hri_gmac_isr_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->ISR.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_ISR_reg(const void *const hw, hri_gmac_isr_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->ISR.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_ISR_reg(const void *const hw, hri_gmac_isr_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->ISR.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_ISR_reg(const void *const hw, hri_gmac_isr_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->ISR.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_isr_reg_t hri_gmac_read_ISR_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->ISR.reg;
-}
-
-static inline void hri_gmac_set_MAN_reg(const void *const hw, hri_gmac_man_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->MAN.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_man_reg_t hri_gmac_get_MAN_reg(const void *const hw, hri_gmac_man_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->MAN.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_MAN_reg(const void *const hw, hri_gmac_man_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->MAN.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_MAN_reg(const void *const hw, hri_gmac_man_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->MAN.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_MAN_reg(const void *const hw, hri_gmac_man_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->MAN.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_man_reg_t hri_gmac_read_MAN_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->MAN.reg;
-}
-
-static inline void hri_gmac_set_TPQ_reg(const void *const hw, hri_gmac_tpq_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TPQ.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tpq_reg_t hri_gmac_get_TPQ_reg(const void *const hw, hri_gmac_tpq_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->TPQ.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_TPQ_reg(const void *const hw, hri_gmac_tpq_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TPQ.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_TPQ_reg(const void *const hw, hri_gmac_tpq_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TPQ.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_TPQ_reg(const void *const hw, hri_gmac_tpq_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TPQ.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tpq_reg_t hri_gmac_read_TPQ_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->TPQ.reg;
-}
-
-static inline void hri_gmac_set_TPSF_reg(const void *const hw, hri_gmac_tpsf_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TPSF.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tpsf_reg_t hri_gmac_get_TPSF_reg(const void *const hw, hri_gmac_tpsf_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->TPSF.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_TPSF_reg(const void *const hw, hri_gmac_tpsf_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TPSF.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_TPSF_reg(const void *const hw, hri_gmac_tpsf_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TPSF.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_TPSF_reg(const void *const hw, hri_gmac_tpsf_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TPSF.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tpsf_reg_t hri_gmac_read_TPSF_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->TPSF.reg;
-}
-
-static inline void hri_gmac_set_RPSF_reg(const void *const hw, hri_gmac_rpsf_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->RPSF.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_rpsf_reg_t hri_gmac_get_RPSF_reg(const void *const hw, hri_gmac_rpsf_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->RPSF.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_RPSF_reg(const void *const hw, hri_gmac_rpsf_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->RPSF.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_RPSF_reg(const void *const hw, hri_gmac_rpsf_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->RPSF.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_RPSF_reg(const void *const hw, hri_gmac_rpsf_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->RPSF.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_rpsf_reg_t hri_gmac_read_RPSF_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->RPSF.reg;
-}
-
-static inline void hri_gmac_set_RJFML_reg(const void *const hw, hri_gmac_rjfml_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->RJFML.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_rjfml_reg_t hri_gmac_get_RJFML_reg(const void *const hw, hri_gmac_rjfml_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->RJFML.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_RJFML_reg(const void *const hw, hri_gmac_rjfml_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->RJFML.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_RJFML_reg(const void *const hw, hri_gmac_rjfml_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->RJFML.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_RJFML_reg(const void *const hw, hri_gmac_rjfml_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->RJFML.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_rjfml_reg_t hri_gmac_read_RJFML_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->RJFML.reg;
-}
-
-static inline void hri_gmac_set_HRB_reg(const void *const hw, hri_gmac_hrb_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->HRB.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_hrb_reg_t hri_gmac_get_HRB_reg(const void *const hw, hri_gmac_hrb_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->HRB.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_HRB_reg(const void *const hw, hri_gmac_hrb_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->HRB.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_HRB_reg(const void *const hw, hri_gmac_hrb_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->HRB.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_HRB_reg(const void *const hw, hri_gmac_hrb_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->HRB.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_hrb_reg_t hri_gmac_read_HRB_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->HRB.reg;
-}
-
-static inline void hri_gmac_set_HRT_reg(const void *const hw, hri_gmac_hrt_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->HRT.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_hrt_reg_t hri_gmac_get_HRT_reg(const void *const hw, hri_gmac_hrt_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->HRT.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_HRT_reg(const void *const hw, hri_gmac_hrt_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->HRT.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_HRT_reg(const void *const hw, hri_gmac_hrt_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->HRT.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_HRT_reg(const void *const hw, hri_gmac_hrt_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->HRT.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_hrt_reg_t hri_gmac_read_HRT_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->HRT.reg;
-}
-
-static inline void hri_gmac_set_TIDM_reg(const void *const hw, uint8_t index, hri_gmac_tidm_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TIDM[index].reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tidm_reg_t hri_gmac_get_TIDM_reg(const void *const hw, uint8_t index, hri_gmac_tidm_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->TIDM[index].reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_TIDM_reg(const void *const hw, uint8_t index, hri_gmac_tidm_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TIDM[index].reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_TIDM_reg(const void *const hw, uint8_t index, hri_gmac_tidm_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TIDM[index].reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_TIDM_reg(const void *const hw, uint8_t index, hri_gmac_tidm_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TIDM[index].reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tidm_reg_t hri_gmac_read_TIDM_reg(const void *const hw, uint8_t index)
-{
-	return ((Gmac *)hw)->TIDM[index].reg;
-}
-
-static inline void hri_gmac_set_WOL_reg(const void *const hw, hri_gmac_wol_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->WOL.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_wol_reg_t hri_gmac_get_WOL_reg(const void *const hw, hri_gmac_wol_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->WOL.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_WOL_reg(const void *const hw, hri_gmac_wol_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->WOL.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_WOL_reg(const void *const hw, hri_gmac_wol_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->WOL.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_WOL_reg(const void *const hw, hri_gmac_wol_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->WOL.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_wol_reg_t hri_gmac_read_WOL_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->WOL.reg;
-}
-
-static inline void hri_gmac_set_IPGS_reg(const void *const hw, hri_gmac_ipgs_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->IPGS.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_ipgs_reg_t hri_gmac_get_IPGS_reg(const void *const hw, hri_gmac_ipgs_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->IPGS.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_IPGS_reg(const void *const hw, hri_gmac_ipgs_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->IPGS.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_IPGS_reg(const void *const hw, hri_gmac_ipgs_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->IPGS.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_IPGS_reg(const void *const hw, hri_gmac_ipgs_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->IPGS.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_ipgs_reg_t hri_gmac_read_IPGS_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->IPGS.reg;
-}
-
-static inline void hri_gmac_set_SVLAN_reg(const void *const hw, hri_gmac_svlan_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SVLAN.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_svlan_reg_t hri_gmac_get_SVLAN_reg(const void *const hw, hri_gmac_svlan_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->SVLAN.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_SVLAN_reg(const void *const hw, hri_gmac_svlan_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SVLAN.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_SVLAN_reg(const void *const hw, hri_gmac_svlan_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SVLAN.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_SVLAN_reg(const void *const hw, hri_gmac_svlan_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SVLAN.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_svlan_reg_t hri_gmac_read_SVLAN_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->SVLAN.reg;
-}
-
-static inline void hri_gmac_set_TPFCP_reg(const void *const hw, hri_gmac_tpfcp_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TPFCP.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tpfcp_reg_t hri_gmac_get_TPFCP_reg(const void *const hw, hri_gmac_tpfcp_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->TPFCP.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_TPFCP_reg(const void *const hw, hri_gmac_tpfcp_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TPFCP.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_TPFCP_reg(const void *const hw, hri_gmac_tpfcp_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TPFCP.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_TPFCP_reg(const void *const hw, hri_gmac_tpfcp_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TPFCP.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tpfcp_reg_t hri_gmac_read_TPFCP_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->TPFCP.reg;
-}
-
-static inline void hri_gmac_set_SAMB1_reg(const void *const hw, hri_gmac_samb1_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SAMB1.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_samb1_reg_t hri_gmac_get_SAMB1_reg(const void *const hw, hri_gmac_samb1_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->SAMB1.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_SAMB1_reg(const void *const hw, hri_gmac_samb1_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SAMB1.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_SAMB1_reg(const void *const hw, hri_gmac_samb1_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SAMB1.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_SAMB1_reg(const void *const hw, hri_gmac_samb1_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SAMB1.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_samb1_reg_t hri_gmac_read_SAMB1_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->SAMB1.reg;
-}
-
-static inline void hri_gmac_set_SAMT1_reg(const void *const hw, hri_gmac_samt1_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SAMT1.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_samt1_reg_t hri_gmac_get_SAMT1_reg(const void *const hw, hri_gmac_samt1_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->SAMT1.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_SAMT1_reg(const void *const hw, hri_gmac_samt1_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SAMT1.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_SAMT1_reg(const void *const hw, hri_gmac_samt1_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SAMT1.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_SAMT1_reg(const void *const hw, hri_gmac_samt1_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SAMT1.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_samt1_reg_t hri_gmac_read_SAMT1_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->SAMT1.reg;
-}
-
-static inline void hri_gmac_set_NSC_reg(const void *const hw, hri_gmac_nsc_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->NSC.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_nsc_reg_t hri_gmac_get_NSC_reg(const void *const hw, hri_gmac_nsc_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->NSC.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_NSC_reg(const void *const hw, hri_gmac_nsc_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->NSC.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_NSC_reg(const void *const hw, hri_gmac_nsc_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->NSC.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_NSC_reg(const void *const hw, hri_gmac_nsc_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->NSC.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_nsc_reg_t hri_gmac_read_NSC_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->NSC.reg;
-}
-
-static inline void hri_gmac_set_SCL_reg(const void *const hw, hri_gmac_scl_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SCL.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_scl_reg_t hri_gmac_get_SCL_reg(const void *const hw, hri_gmac_scl_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->SCL.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_SCL_reg(const void *const hw, hri_gmac_scl_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SCL.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_SCL_reg(const void *const hw, hri_gmac_scl_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SCL.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_SCL_reg(const void *const hw, hri_gmac_scl_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SCL.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_scl_reg_t hri_gmac_read_SCL_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->SCL.reg;
-}
-
-static inline void hri_gmac_set_SCH_reg(const void *const hw, hri_gmac_sch_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SCH.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_sch_reg_t hri_gmac_get_SCH_reg(const void *const hw, hri_gmac_sch_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->SCH.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_SCH_reg(const void *const hw, hri_gmac_sch_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SCH.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_SCH_reg(const void *const hw, hri_gmac_sch_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SCH.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_SCH_reg(const void *const hw, hri_gmac_sch_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->SCH.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_sch_reg_t hri_gmac_read_SCH_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->SCH.reg;
-}
-
-static inline void hri_gmac_set_TISUBN_reg(const void *const hw, hri_gmac_tisubn_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TISUBN.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tisubn_reg_t hri_gmac_get_TISUBN_reg(const void *const hw, hri_gmac_tisubn_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->TISUBN.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_TISUBN_reg(const void *const hw, hri_gmac_tisubn_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TISUBN.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_TISUBN_reg(const void *const hw, hri_gmac_tisubn_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TISUBN.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_TISUBN_reg(const void *const hw, hri_gmac_tisubn_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TISUBN.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tisubn_reg_t hri_gmac_read_TISUBN_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->TISUBN.reg;
-}
-
-static inline void hri_gmac_set_TSH_reg(const void *const hw, hri_gmac_tsh_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSH.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tsh_reg_t hri_gmac_get_TSH_reg(const void *const hw, hri_gmac_tsh_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->TSH.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_TSH_reg(const void *const hw, hri_gmac_tsh_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSH.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_TSH_reg(const void *const hw, hri_gmac_tsh_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSH.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_TSH_reg(const void *const hw, hri_gmac_tsh_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSH.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tsh_reg_t hri_gmac_read_TSH_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->TSH.reg;
-}
-
-static inline void hri_gmac_set_TSSSL_reg(const void *const hw, hri_gmac_tsssl_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSSSL.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tsssl_reg_t hri_gmac_get_TSSSL_reg(const void *const hw, hri_gmac_tsssl_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->TSSSL.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_TSSSL_reg(const void *const hw, hri_gmac_tsssl_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSSSL.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_TSSSL_reg(const void *const hw, hri_gmac_tsssl_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSSSL.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_TSSSL_reg(const void *const hw, hri_gmac_tsssl_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSSSL.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tsssl_reg_t hri_gmac_read_TSSSL_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->TSSSL.reg;
-}
-
-static inline void hri_gmac_set_TSSN_reg(const void *const hw, hri_gmac_tssn_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSSN.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tssn_reg_t hri_gmac_get_TSSN_reg(const void *const hw, hri_gmac_tssn_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->TSSN.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_TSSN_reg(const void *const hw, hri_gmac_tssn_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSSN.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_TSSN_reg(const void *const hw, hri_gmac_tssn_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSSN.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_TSSN_reg(const void *const hw, hri_gmac_tssn_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSSN.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tssn_reg_t hri_gmac_read_TSSN_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->TSSN.reg;
-}
-
-static inline void hri_gmac_set_TSL_reg(const void *const hw, hri_gmac_tsl_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSL.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tsl_reg_t hri_gmac_get_TSL_reg(const void *const hw, hri_gmac_tsl_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->TSL.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_TSL_reg(const void *const hw, hri_gmac_tsl_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSL.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_TSL_reg(const void *const hw, hri_gmac_tsl_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSL.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_TSL_reg(const void *const hw, hri_gmac_tsl_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TSL.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tsl_reg_t hri_gmac_read_TSL_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->TSL.reg;
-}
-
-static inline void hri_gmac_set_TN_reg(const void *const hw, hri_gmac_tn_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TN.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tn_reg_t hri_gmac_get_TN_reg(const void *const hw, hri_gmac_tn_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->TN.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_TN_reg(const void *const hw, hri_gmac_tn_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TN.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_TN_reg(const void *const hw, hri_gmac_tn_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TN.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_TN_reg(const void *const hw, hri_gmac_tn_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TN.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_tn_reg_t hri_gmac_read_TN_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->TN.reg;
-}
-
-static inline void hri_gmac_set_TI_reg(const void *const hw, hri_gmac_ti_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TI.reg |= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_ti_reg_t hri_gmac_get_TI_reg(const void *const hw, hri_gmac_ti_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Gmac *)hw)->TI.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline void hri_gmac_write_TI_reg(const void *const hw, hri_gmac_ti_reg_t data)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TI.reg = data;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_clear_TI_reg(const void *const hw, hri_gmac_ti_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TI.reg &= ~mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_gmac_toggle_TI_reg(const void *const hw, hri_gmac_ti_reg_t mask)
-{
-	GMAC_CRITICAL_SECTION_ENTER();
-	((Gmac *)hw)->TI.reg ^= mask;
-	GMAC_CRITICAL_SECTION_LEAVE();
-}
-
-static inline hri_gmac_ti_reg_t hri_gmac_read_TI_reg(const void *const hw)
-{
-	return ((Gmac *)hw)->TI.reg;
 }
 
 static inline bool hri_gmac_get_NSR_MDIO_bit(const void *const hw)
@@ -3765,6 +2396,1366 @@ static inline hri_gmac_tlpiti_reg_t hri_gmac_get_TLPITI_reg(const void *const hw
 static inline hri_gmac_tlpiti_reg_t hri_gmac_read_TLPITI_reg(const void *const hw)
 {
 	return ((Gmac *)hw)->TLPITI.reg;
+}
+
+static inline void hri_gmac_set_NCR_reg(const void *const hw, hri_gmac_ncr_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->NCR.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_ncr_reg_t hri_gmac_get_NCR_reg(const void *const hw, hri_gmac_ncr_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->NCR.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_NCR_reg(const void *const hw, hri_gmac_ncr_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->NCR.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_NCR_reg(const void *const hw, hri_gmac_ncr_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->NCR.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_NCR_reg(const void *const hw, hri_gmac_ncr_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->NCR.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_ncr_reg_t hri_gmac_read_NCR_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->NCR.reg;
+}
+
+static inline void hri_gmac_set_NCFGR_reg(const void *const hw, hri_gmac_ncfgr_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->NCFGR.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_ncfgr_reg_t hri_gmac_get_NCFGR_reg(const void *const hw, hri_gmac_ncfgr_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->NCFGR.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_NCFGR_reg(const void *const hw, hri_gmac_ncfgr_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->NCFGR.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_NCFGR_reg(const void *const hw, hri_gmac_ncfgr_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->NCFGR.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_NCFGR_reg(const void *const hw, hri_gmac_ncfgr_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->NCFGR.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_ncfgr_reg_t hri_gmac_read_NCFGR_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->NCFGR.reg;
+}
+
+static inline void hri_gmac_set_UR_reg(const void *const hw, hri_gmac_ur_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->UR.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_ur_reg_t hri_gmac_get_UR_reg(const void *const hw, hri_gmac_ur_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->UR.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_UR_reg(const void *const hw, hri_gmac_ur_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->UR.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_UR_reg(const void *const hw, hri_gmac_ur_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->UR.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_UR_reg(const void *const hw, hri_gmac_ur_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->UR.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_ur_reg_t hri_gmac_read_UR_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->UR.reg;
+}
+
+static inline void hri_gmac_set_DCFGR_reg(const void *const hw, hri_gmac_dcfgr_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->DCFGR.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_dcfgr_reg_t hri_gmac_get_DCFGR_reg(const void *const hw, hri_gmac_dcfgr_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->DCFGR.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_DCFGR_reg(const void *const hw, hri_gmac_dcfgr_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->DCFGR.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_DCFGR_reg(const void *const hw, hri_gmac_dcfgr_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->DCFGR.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_DCFGR_reg(const void *const hw, hri_gmac_dcfgr_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->DCFGR.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_dcfgr_reg_t hri_gmac_read_DCFGR_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->DCFGR.reg;
+}
+
+static inline void hri_gmac_set_TSR_reg(const void *const hw, hri_gmac_tsr_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSR.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tsr_reg_t hri_gmac_get_TSR_reg(const void *const hw, hri_gmac_tsr_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->TSR.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_TSR_reg(const void *const hw, hri_gmac_tsr_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSR.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_TSR_reg(const void *const hw, hri_gmac_tsr_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSR.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_TSR_reg(const void *const hw, hri_gmac_tsr_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSR.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tsr_reg_t hri_gmac_read_TSR_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->TSR.reg;
+}
+
+static inline void hri_gmac_set_RBQB_reg(const void *const hw, hri_gmac_rbqb_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->RBQB.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_rbqb_reg_t hri_gmac_get_RBQB_reg(const void *const hw, hri_gmac_rbqb_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->RBQB.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_RBQB_reg(const void *const hw, hri_gmac_rbqb_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->RBQB.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_RBQB_reg(const void *const hw, hri_gmac_rbqb_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->RBQB.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_RBQB_reg(const void *const hw, hri_gmac_rbqb_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->RBQB.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_rbqb_reg_t hri_gmac_read_RBQB_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->RBQB.reg;
+}
+
+static inline void hri_gmac_set_TBQB_reg(const void *const hw, hri_gmac_tbqb_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TBQB.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tbqb_reg_t hri_gmac_get_TBQB_reg(const void *const hw, hri_gmac_tbqb_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->TBQB.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_TBQB_reg(const void *const hw, hri_gmac_tbqb_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TBQB.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_TBQB_reg(const void *const hw, hri_gmac_tbqb_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TBQB.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_TBQB_reg(const void *const hw, hri_gmac_tbqb_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TBQB.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tbqb_reg_t hri_gmac_read_TBQB_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->TBQB.reg;
+}
+
+static inline void hri_gmac_set_RSR_reg(const void *const hw, hri_gmac_rsr_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->RSR.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_rsr_reg_t hri_gmac_get_RSR_reg(const void *const hw, hri_gmac_rsr_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->RSR.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_RSR_reg(const void *const hw, hri_gmac_rsr_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->RSR.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_RSR_reg(const void *const hw, hri_gmac_rsr_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->RSR.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_RSR_reg(const void *const hw, hri_gmac_rsr_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->RSR.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_rsr_reg_t hri_gmac_read_RSR_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->RSR.reg;
+}
+
+static inline void hri_gmac_set_ISR_reg(const void *const hw, hri_gmac_isr_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->ISR.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_isr_reg_t hri_gmac_get_ISR_reg(const void *const hw, hri_gmac_isr_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->ISR.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_ISR_reg(const void *const hw, hri_gmac_isr_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->ISR.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_ISR_reg(const void *const hw, hri_gmac_isr_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->ISR.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_ISR_reg(const void *const hw, hri_gmac_isr_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->ISR.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_isr_reg_t hri_gmac_read_ISR_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->ISR.reg;
+}
+
+static inline void hri_gmac_set_MAN_reg(const void *const hw, hri_gmac_man_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->MAN.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_man_reg_t hri_gmac_get_MAN_reg(const void *const hw, hri_gmac_man_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->MAN.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_MAN_reg(const void *const hw, hri_gmac_man_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->MAN.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_MAN_reg(const void *const hw, hri_gmac_man_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->MAN.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_MAN_reg(const void *const hw, hri_gmac_man_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->MAN.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_man_reg_t hri_gmac_read_MAN_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->MAN.reg;
+}
+
+static inline void hri_gmac_set_TPQ_reg(const void *const hw, hri_gmac_tpq_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TPQ.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tpq_reg_t hri_gmac_get_TPQ_reg(const void *const hw, hri_gmac_tpq_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->TPQ.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_TPQ_reg(const void *const hw, hri_gmac_tpq_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TPQ.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_TPQ_reg(const void *const hw, hri_gmac_tpq_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TPQ.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_TPQ_reg(const void *const hw, hri_gmac_tpq_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TPQ.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tpq_reg_t hri_gmac_read_TPQ_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->TPQ.reg;
+}
+
+static inline void hri_gmac_set_TPSF_reg(const void *const hw, hri_gmac_tpsf_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TPSF.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tpsf_reg_t hri_gmac_get_TPSF_reg(const void *const hw, hri_gmac_tpsf_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->TPSF.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_TPSF_reg(const void *const hw, hri_gmac_tpsf_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TPSF.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_TPSF_reg(const void *const hw, hri_gmac_tpsf_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TPSF.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_TPSF_reg(const void *const hw, hri_gmac_tpsf_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TPSF.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tpsf_reg_t hri_gmac_read_TPSF_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->TPSF.reg;
+}
+
+static inline void hri_gmac_set_RPSF_reg(const void *const hw, hri_gmac_rpsf_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->RPSF.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_rpsf_reg_t hri_gmac_get_RPSF_reg(const void *const hw, hri_gmac_rpsf_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->RPSF.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_RPSF_reg(const void *const hw, hri_gmac_rpsf_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->RPSF.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_RPSF_reg(const void *const hw, hri_gmac_rpsf_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->RPSF.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_RPSF_reg(const void *const hw, hri_gmac_rpsf_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->RPSF.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_rpsf_reg_t hri_gmac_read_RPSF_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->RPSF.reg;
+}
+
+static inline void hri_gmac_set_RJFML_reg(const void *const hw, hri_gmac_rjfml_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->RJFML.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_rjfml_reg_t hri_gmac_get_RJFML_reg(const void *const hw, hri_gmac_rjfml_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->RJFML.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_RJFML_reg(const void *const hw, hri_gmac_rjfml_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->RJFML.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_RJFML_reg(const void *const hw, hri_gmac_rjfml_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->RJFML.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_RJFML_reg(const void *const hw, hri_gmac_rjfml_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->RJFML.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_rjfml_reg_t hri_gmac_read_RJFML_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->RJFML.reg;
+}
+
+static inline void hri_gmac_set_HRB_reg(const void *const hw, hri_gmac_hrb_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->HRB.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_hrb_reg_t hri_gmac_get_HRB_reg(const void *const hw, hri_gmac_hrb_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->HRB.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_HRB_reg(const void *const hw, hri_gmac_hrb_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->HRB.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_HRB_reg(const void *const hw, hri_gmac_hrb_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->HRB.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_HRB_reg(const void *const hw, hri_gmac_hrb_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->HRB.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_hrb_reg_t hri_gmac_read_HRB_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->HRB.reg;
+}
+
+static inline void hri_gmac_set_HRT_reg(const void *const hw, hri_gmac_hrt_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->HRT.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_hrt_reg_t hri_gmac_get_HRT_reg(const void *const hw, hri_gmac_hrt_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->HRT.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_HRT_reg(const void *const hw, hri_gmac_hrt_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->HRT.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_HRT_reg(const void *const hw, hri_gmac_hrt_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->HRT.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_HRT_reg(const void *const hw, hri_gmac_hrt_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->HRT.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_hrt_reg_t hri_gmac_read_HRT_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->HRT.reg;
+}
+
+static inline void hri_gmac_set_TIDM_reg(const void *const hw, uint8_t index, hri_gmac_tidm_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TIDM[index].reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tidm_reg_t hri_gmac_get_TIDM_reg(const void *const hw, uint8_t index, hri_gmac_tidm_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->TIDM[index].reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_TIDM_reg(const void *const hw, uint8_t index, hri_gmac_tidm_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TIDM[index].reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_TIDM_reg(const void *const hw, uint8_t index, hri_gmac_tidm_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TIDM[index].reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_TIDM_reg(const void *const hw, uint8_t index, hri_gmac_tidm_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TIDM[index].reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tidm_reg_t hri_gmac_read_TIDM_reg(const void *const hw, uint8_t index)
+{
+	return ((Gmac *)hw)->TIDM[index].reg;
+}
+
+static inline void hri_gmac_set_WOL_reg(const void *const hw, hri_gmac_wol_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->WOL.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_wol_reg_t hri_gmac_get_WOL_reg(const void *const hw, hri_gmac_wol_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->WOL.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_WOL_reg(const void *const hw, hri_gmac_wol_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->WOL.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_WOL_reg(const void *const hw, hri_gmac_wol_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->WOL.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_WOL_reg(const void *const hw, hri_gmac_wol_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->WOL.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_wol_reg_t hri_gmac_read_WOL_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->WOL.reg;
+}
+
+static inline void hri_gmac_set_IPGS_reg(const void *const hw, hri_gmac_ipgs_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->IPGS.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_ipgs_reg_t hri_gmac_get_IPGS_reg(const void *const hw, hri_gmac_ipgs_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->IPGS.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_IPGS_reg(const void *const hw, hri_gmac_ipgs_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->IPGS.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_IPGS_reg(const void *const hw, hri_gmac_ipgs_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->IPGS.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_IPGS_reg(const void *const hw, hri_gmac_ipgs_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->IPGS.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_ipgs_reg_t hri_gmac_read_IPGS_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->IPGS.reg;
+}
+
+static inline void hri_gmac_set_SVLAN_reg(const void *const hw, hri_gmac_svlan_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SVLAN.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_svlan_reg_t hri_gmac_get_SVLAN_reg(const void *const hw, hri_gmac_svlan_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->SVLAN.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_SVLAN_reg(const void *const hw, hri_gmac_svlan_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SVLAN.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_SVLAN_reg(const void *const hw, hri_gmac_svlan_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SVLAN.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_SVLAN_reg(const void *const hw, hri_gmac_svlan_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SVLAN.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_svlan_reg_t hri_gmac_read_SVLAN_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->SVLAN.reg;
+}
+
+static inline void hri_gmac_set_TPFCP_reg(const void *const hw, hri_gmac_tpfcp_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TPFCP.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tpfcp_reg_t hri_gmac_get_TPFCP_reg(const void *const hw, hri_gmac_tpfcp_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->TPFCP.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_TPFCP_reg(const void *const hw, hri_gmac_tpfcp_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TPFCP.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_TPFCP_reg(const void *const hw, hri_gmac_tpfcp_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TPFCP.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_TPFCP_reg(const void *const hw, hri_gmac_tpfcp_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TPFCP.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tpfcp_reg_t hri_gmac_read_TPFCP_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->TPFCP.reg;
+}
+
+static inline void hri_gmac_set_SAMB1_reg(const void *const hw, hri_gmac_samb1_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SAMB1.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_samb1_reg_t hri_gmac_get_SAMB1_reg(const void *const hw, hri_gmac_samb1_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->SAMB1.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_SAMB1_reg(const void *const hw, hri_gmac_samb1_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SAMB1.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_SAMB1_reg(const void *const hw, hri_gmac_samb1_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SAMB1.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_SAMB1_reg(const void *const hw, hri_gmac_samb1_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SAMB1.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_samb1_reg_t hri_gmac_read_SAMB1_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->SAMB1.reg;
+}
+
+static inline void hri_gmac_set_SAMT1_reg(const void *const hw, hri_gmac_samt1_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SAMT1.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_samt1_reg_t hri_gmac_get_SAMT1_reg(const void *const hw, hri_gmac_samt1_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->SAMT1.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_SAMT1_reg(const void *const hw, hri_gmac_samt1_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SAMT1.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_SAMT1_reg(const void *const hw, hri_gmac_samt1_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SAMT1.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_SAMT1_reg(const void *const hw, hri_gmac_samt1_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SAMT1.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_samt1_reg_t hri_gmac_read_SAMT1_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->SAMT1.reg;
+}
+
+static inline void hri_gmac_set_NSC_reg(const void *const hw, hri_gmac_nsc_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->NSC.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_nsc_reg_t hri_gmac_get_NSC_reg(const void *const hw, hri_gmac_nsc_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->NSC.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_NSC_reg(const void *const hw, hri_gmac_nsc_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->NSC.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_NSC_reg(const void *const hw, hri_gmac_nsc_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->NSC.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_NSC_reg(const void *const hw, hri_gmac_nsc_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->NSC.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_nsc_reg_t hri_gmac_read_NSC_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->NSC.reg;
+}
+
+static inline void hri_gmac_set_SCL_reg(const void *const hw, hri_gmac_scl_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SCL.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_scl_reg_t hri_gmac_get_SCL_reg(const void *const hw, hri_gmac_scl_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->SCL.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_SCL_reg(const void *const hw, hri_gmac_scl_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SCL.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_SCL_reg(const void *const hw, hri_gmac_scl_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SCL.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_SCL_reg(const void *const hw, hri_gmac_scl_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SCL.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_scl_reg_t hri_gmac_read_SCL_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->SCL.reg;
+}
+
+static inline void hri_gmac_set_SCH_reg(const void *const hw, hri_gmac_sch_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SCH.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_sch_reg_t hri_gmac_get_SCH_reg(const void *const hw, hri_gmac_sch_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->SCH.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_SCH_reg(const void *const hw, hri_gmac_sch_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SCH.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_SCH_reg(const void *const hw, hri_gmac_sch_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SCH.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_SCH_reg(const void *const hw, hri_gmac_sch_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->SCH.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_sch_reg_t hri_gmac_read_SCH_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->SCH.reg;
+}
+
+static inline void hri_gmac_set_TISUBN_reg(const void *const hw, hri_gmac_tisubn_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TISUBN.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tisubn_reg_t hri_gmac_get_TISUBN_reg(const void *const hw, hri_gmac_tisubn_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->TISUBN.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_TISUBN_reg(const void *const hw, hri_gmac_tisubn_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TISUBN.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_TISUBN_reg(const void *const hw, hri_gmac_tisubn_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TISUBN.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_TISUBN_reg(const void *const hw, hri_gmac_tisubn_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TISUBN.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tisubn_reg_t hri_gmac_read_TISUBN_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->TISUBN.reg;
+}
+
+static inline void hri_gmac_set_TSH_reg(const void *const hw, hri_gmac_tsh_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSH.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tsh_reg_t hri_gmac_get_TSH_reg(const void *const hw, hri_gmac_tsh_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->TSH.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_TSH_reg(const void *const hw, hri_gmac_tsh_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSH.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_TSH_reg(const void *const hw, hri_gmac_tsh_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSH.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_TSH_reg(const void *const hw, hri_gmac_tsh_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSH.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tsh_reg_t hri_gmac_read_TSH_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->TSH.reg;
+}
+
+static inline void hri_gmac_set_TSSSL_reg(const void *const hw, hri_gmac_tsssl_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSSSL.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tsssl_reg_t hri_gmac_get_TSSSL_reg(const void *const hw, hri_gmac_tsssl_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->TSSSL.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_TSSSL_reg(const void *const hw, hri_gmac_tsssl_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSSSL.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_TSSSL_reg(const void *const hw, hri_gmac_tsssl_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSSSL.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_TSSSL_reg(const void *const hw, hri_gmac_tsssl_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSSSL.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tsssl_reg_t hri_gmac_read_TSSSL_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->TSSSL.reg;
+}
+
+static inline void hri_gmac_set_TSSN_reg(const void *const hw, hri_gmac_tssn_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSSN.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tssn_reg_t hri_gmac_get_TSSN_reg(const void *const hw, hri_gmac_tssn_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->TSSN.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_TSSN_reg(const void *const hw, hri_gmac_tssn_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSSN.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_TSSN_reg(const void *const hw, hri_gmac_tssn_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSSN.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_TSSN_reg(const void *const hw, hri_gmac_tssn_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSSN.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tssn_reg_t hri_gmac_read_TSSN_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->TSSN.reg;
+}
+
+static inline void hri_gmac_set_TSL_reg(const void *const hw, hri_gmac_tsl_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSL.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tsl_reg_t hri_gmac_get_TSL_reg(const void *const hw, hri_gmac_tsl_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->TSL.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_TSL_reg(const void *const hw, hri_gmac_tsl_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSL.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_TSL_reg(const void *const hw, hri_gmac_tsl_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSL.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_TSL_reg(const void *const hw, hri_gmac_tsl_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TSL.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tsl_reg_t hri_gmac_read_TSL_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->TSL.reg;
+}
+
+static inline void hri_gmac_set_TN_reg(const void *const hw, hri_gmac_tn_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TN.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tn_reg_t hri_gmac_get_TN_reg(const void *const hw, hri_gmac_tn_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->TN.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_TN_reg(const void *const hw, hri_gmac_tn_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TN.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_TN_reg(const void *const hw, hri_gmac_tn_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TN.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_TN_reg(const void *const hw, hri_gmac_tn_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TN.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_tn_reg_t hri_gmac_read_TN_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->TN.reg;
+}
+
+static inline void hri_gmac_set_TI_reg(const void *const hw, hri_gmac_ti_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TI.reg |= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_ti_reg_t hri_gmac_get_TI_reg(const void *const hw, hri_gmac_ti_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Gmac *)hw)->TI.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline void hri_gmac_write_TI_reg(const void *const hw, hri_gmac_ti_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TI.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_clear_TI_reg(const void *const hw, hri_gmac_ti_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TI.reg &= ~mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline void hri_gmac_toggle_TI_reg(const void *const hw, hri_gmac_ti_reg_t mask)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TI.reg ^= mask;
+	GMAC_CRITICAL_SECTION_LEAVE();
+}
+
+static inline hri_gmac_ti_reg_t hri_gmac_read_TI_reg(const void *const hw)
+{
+	return ((Gmac *)hw)->TI.reg;
+}
+
+static inline void hri_gmac_write_TA_reg(const void *const hw, hri_gmac_ta_reg_t data)
+{
+	GMAC_CRITICAL_SECTION_ENTER();
+	((Gmac *)hw)->TA.reg = data;
+	GMAC_CRITICAL_SECTION_LEAVE();
 }
 
 #ifdef __cplusplus

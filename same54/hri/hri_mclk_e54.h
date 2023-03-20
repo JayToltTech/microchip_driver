@@ -3,41 +3,32 @@
  *
  * \brief SAM MCLK
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (c) 2016-2018 Microchip Technology Inc. and its subsidiaries.
  *
  * \asf_license_start
  *
  * \page License
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ * Subject to your compliance with these terms, you may use Microchip
+ * software and any derivatives exclusively with Microchip products.
+ * It is your responsibility to comply with third party license terms applicable
+ * to your use of third party software (including open source software) that
+ * may accompany Microchip software.
  *
- * 1. Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- * 3. The name of Atmel may not be used to endorse or promote products derived
- *    from this software without specific prior written permission.
- *
- * 4. This software may only be redistributed and used in connection with an
- *    Atmel microcontroller product.
- *
- * THIS SOFTWARE IS PROVIDED BY ATMEL "AS IS" AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE
- * EXPRESSLY AND SPECIFICALLY DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
- * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES,
+ * WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE,
+ * INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY,
+ * AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT WILL MICROCHIP BE
+ * LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUENTIAL
+ * LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND WHATSOEVER RELATED TO THE
+ * SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS BEEN ADVISED OF THE
+ * POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE FULLEST EXTENT
+ * ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN ANY WAY
+ * RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+ * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
  *
  * \asf_license_stop
+ *
  */
 
 #ifdef _SAME54_MCLK_COMPONENT_
@@ -68,6 +59,44 @@ typedef uint8_t  hri_mclk_cpudiv_reg_t;
 typedef uint8_t  hri_mclk_hsdiv_reg_t;
 typedef uint8_t  hri_mclk_intenset_reg_t;
 typedef uint8_t  hri_mclk_intflag_reg_t;
+
+static inline bool hri_mclk_get_INTFLAG_CKRDY_bit(const void *const hw)
+{
+	return (((Mclk *)hw)->INTFLAG.reg & MCLK_INTFLAG_CKRDY) >> MCLK_INTFLAG_CKRDY_Pos;
+}
+
+static inline void hri_mclk_clear_INTFLAG_CKRDY_bit(const void *const hw)
+{
+	((Mclk *)hw)->INTFLAG.reg = MCLK_INTFLAG_CKRDY;
+}
+
+static inline bool hri_mclk_get_interrupt_CKRDY_bit(const void *const hw)
+{
+	return (((Mclk *)hw)->INTFLAG.reg & MCLK_INTFLAG_CKRDY) >> MCLK_INTFLAG_CKRDY_Pos;
+}
+
+static inline void hri_mclk_clear_interrupt_CKRDY_bit(const void *const hw)
+{
+	((Mclk *)hw)->INTFLAG.reg = MCLK_INTFLAG_CKRDY;
+}
+
+static inline hri_mclk_intflag_reg_t hri_mclk_get_INTFLAG_reg(const void *const hw, hri_mclk_intflag_reg_t mask)
+{
+	uint8_t tmp;
+	tmp = ((Mclk *)hw)->INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_mclk_intflag_reg_t hri_mclk_read_INTFLAG_reg(const void *const hw)
+{
+	return ((Mclk *)hw)->INTFLAG.reg;
+}
+
+static inline void hri_mclk_clear_INTFLAG_reg(const void *const hw, hri_mclk_intflag_reg_t mask)
+{
+	((Mclk *)hw)->INTFLAG.reg = mask;
+}
 
 static inline void hri_mclk_set_INTEN_CKRDY_bit(const void *const hw)
 {
@@ -122,42 +151,27 @@ static inline void hri_mclk_clear_INTEN_reg(const void *const hw, hri_mclk_inten
 	((Mclk *)hw)->INTENCLR.reg = mask;
 }
 
-static inline bool hri_mclk_get_INTFLAG_CKRDY_bit(const void *const hw)
+static inline hri_mclk_hsdiv_reg_t hri_mclk_get_HSDIV_DIV_bf(const void *const hw, hri_mclk_hsdiv_reg_t mask)
 {
-	return (((Mclk *)hw)->INTFLAG.reg & MCLK_INTFLAG_CKRDY) >> MCLK_INTFLAG_CKRDY_Pos;
+	return (((Mclk *)hw)->HSDIV.reg & MCLK_HSDIV_DIV(mask)) >> MCLK_HSDIV_DIV_Pos;
 }
 
-static inline void hri_mclk_clear_INTFLAG_CKRDY_bit(const void *const hw)
+static inline hri_mclk_hsdiv_reg_t hri_mclk_read_HSDIV_DIV_bf(const void *const hw)
 {
-	((Mclk *)hw)->INTFLAG.reg = MCLK_INTFLAG_CKRDY;
+	return (((Mclk *)hw)->HSDIV.reg & MCLK_HSDIV_DIV_Msk) >> MCLK_HSDIV_DIV_Pos;
 }
 
-static inline bool hri_mclk_get_interrupt_CKRDY_bit(const void *const hw)
-{
-	return (((Mclk *)hw)->INTFLAG.reg & MCLK_INTFLAG_CKRDY) >> MCLK_INTFLAG_CKRDY_Pos;
-}
-
-static inline void hri_mclk_clear_interrupt_CKRDY_bit(const void *const hw)
-{
-	((Mclk *)hw)->INTFLAG.reg = MCLK_INTFLAG_CKRDY;
-}
-
-static inline hri_mclk_intflag_reg_t hri_mclk_get_INTFLAG_reg(const void *const hw, hri_mclk_intflag_reg_t mask)
+static inline hri_mclk_hsdiv_reg_t hri_mclk_get_HSDIV_reg(const void *const hw, hri_mclk_hsdiv_reg_t mask)
 {
 	uint8_t tmp;
-	tmp = ((Mclk *)hw)->INTFLAG.reg;
+	tmp = ((Mclk *)hw)->HSDIV.reg;
 	tmp &= mask;
 	return tmp;
 }
 
-static inline hri_mclk_intflag_reg_t hri_mclk_read_INTFLAG_reg(const void *const hw)
+static inline hri_mclk_hsdiv_reg_t hri_mclk_read_HSDIV_reg(const void *const hw)
 {
-	return ((Mclk *)hw)->INTFLAG.reg;
-}
-
-static inline void hri_mclk_clear_INTFLAG_reg(const void *const hw, hri_mclk_intflag_reg_t mask)
-{
-	((Mclk *)hw)->INTFLAG.reg = mask;
+	return ((Mclk *)hw)->HSDIV.reg;
 }
 
 static inline void hri_mclk_set_CPUDIV_DIV_bf(const void *const hw, hri_mclk_cpudiv_reg_t mask)
@@ -2411,46 +2425,6 @@ static inline void hri_mclk_toggle_APBBMASK_TC3_bit(const void *const hw)
 	MCLK_CRITICAL_SECTION_LEAVE();
 }
 
-static inline void hri_mclk_set_APBBMASK_TAL_bit(const void *const hw)
-{
-	MCLK_CRITICAL_SECTION_ENTER();
-	((Mclk *)hw)->APBBMASK.reg |= MCLK_APBBMASK_TAL;
-	MCLK_CRITICAL_SECTION_LEAVE();
-}
-
-static inline bool hri_mclk_get_APBBMASK_TAL_bit(const void *const hw)
-{
-	uint32_t tmp;
-	tmp = ((Mclk *)hw)->APBBMASK.reg;
-	tmp = (tmp & MCLK_APBBMASK_TAL) >> MCLK_APBBMASK_TAL_Pos;
-	return (bool)tmp;
-}
-
-static inline void hri_mclk_write_APBBMASK_TAL_bit(const void *const hw, bool value)
-{
-	uint32_t tmp;
-	MCLK_CRITICAL_SECTION_ENTER();
-	tmp = ((Mclk *)hw)->APBBMASK.reg;
-	tmp &= ~MCLK_APBBMASK_TAL;
-	tmp |= value << MCLK_APBBMASK_TAL_Pos;
-	((Mclk *)hw)->APBBMASK.reg = tmp;
-	MCLK_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_mclk_clear_APBBMASK_TAL_bit(const void *const hw)
-{
-	MCLK_CRITICAL_SECTION_ENTER();
-	((Mclk *)hw)->APBBMASK.reg &= ~MCLK_APBBMASK_TAL;
-	MCLK_CRITICAL_SECTION_LEAVE();
-}
-
-static inline void hri_mclk_toggle_APBBMASK_TAL_bit(const void *const hw)
-{
-	MCLK_CRITICAL_SECTION_ENTER();
-	((Mclk *)hw)->APBBMASK.reg ^= MCLK_APBBMASK_TAL;
-	MCLK_CRITICAL_SECTION_LEAVE();
-}
-
 static inline void hri_mclk_set_APBBMASK_RAMECC_bit(const void *const hw)
 {
 	MCLK_CRITICAL_SECTION_ENTER();
@@ -3572,29 +3546,6 @@ static inline void hri_mclk_toggle_APBDMASK_reg(const void *const hw, hri_mclk_a
 static inline hri_mclk_apbdmask_reg_t hri_mclk_read_APBDMASK_reg(const void *const hw)
 {
 	return ((Mclk *)hw)->APBDMASK.reg;
-}
-
-static inline hri_mclk_hsdiv_reg_t hri_mclk_get_HSDIV_DIV_bf(const void *const hw, hri_mclk_hsdiv_reg_t mask)
-{
-	return (((Mclk *)hw)->HSDIV.reg & MCLK_HSDIV_DIV(mask)) >> MCLK_HSDIV_DIV_Pos;
-}
-
-static inline hri_mclk_hsdiv_reg_t hri_mclk_read_HSDIV_DIV_bf(const void *const hw)
-{
-	return (((Mclk *)hw)->HSDIV.reg & MCLK_HSDIV_DIV_Msk) >> MCLK_HSDIV_DIV_Pos;
-}
-
-static inline hri_mclk_hsdiv_reg_t hri_mclk_get_HSDIV_reg(const void *const hw, hri_mclk_hsdiv_reg_t mask)
-{
-	uint8_t tmp;
-	tmp = ((Mclk *)hw)->HSDIV.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_mclk_hsdiv_reg_t hri_mclk_read_HSDIV_reg(const void *const hw)
-{
-	return ((Mclk *)hw)->HSDIV.reg;
 }
 
 #ifdef __cplusplus

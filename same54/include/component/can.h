@@ -3,7 +3,7 @@
  *
  * \brief Component description for CAN
  *
- * Copyright (c) 2017 Microchip Technology Inc.
+ * Copyright (c) 2019 Microchip Technology Inc.
  *
  * \asf_license_start
  *
@@ -3175,17 +3175,11 @@ typedef struct {
 #endif /* !(defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__)) */
 
 #define SECTION_CAN_MRAM_RXBE
-
 #define SECTION_CAN_MRAM_RXF0E
-
 #define SECTION_CAN_MRAM_RXF1E
-
 #define SECTION_CAN_MRAM_SIDFE
-
 #define SECTION_CAN_MRAM_TXBE
-
 #define SECTION_CAN_MRAM_TXEFE
-
 #define SECTION_CAN_MRAM_XIFDE
 
 /*@}*/

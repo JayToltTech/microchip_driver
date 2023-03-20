@@ -1,9 +1,9 @@
 /**
  * \file
  *
- * \brief gcc starttup file for SAMD51
+ * \brief gcc starttup file for SAME54
  *
- * Copyright (c) 2017 Microchip Technology Inc.
+ * Copyright (c) 2019 Microchip Technology Inc.
  *
  * \asf_license_start
  *
@@ -50,13 +50,13 @@ void __libc_init_array(void);
 void Dummy_Handler(void);
 
 /* Cortex-M4 core handlers */
-void NMI_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
+void NonMaskableInt_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
 void HardFault_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
-void MemManage_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
+void MemManagement_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
 void BusFault_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
 void UsageFault_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
-void SVC_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
-void DebugMon_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
+void SVCall_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
+void DebugMonitor_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
 void PendSV_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
 void SysTick_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
 
@@ -75,7 +75,7 @@ void OSCCTRL_4_Handler(void) __attribute__((
 void OSC32KCTRL_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
 void SUPC_0_Handler(void) __attribute__((weak, alias("Dummy_Handler"))); /* SUPC_B12SRDY, SUPC_B33SRDY, SUPC_BOD12RDY,
                                                                             SUPC_BOD33RDY, SUPC_VCORERDY, SUPC_VREGRDY
-                                                                            */
+                                                                          */
 void SUPC_1_Handler(void) __attribute__((weak, alias("Dummy_Handler"))); /* SUPC_BOD12DET, SUPC_BOD33DET */
 void WDT_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
 void RTC_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
@@ -135,8 +135,6 @@ void EVSYS_4_Handler(void) __attribute__((weak, alias("Dummy_Handler"))); /* EVS
                                                                              EVSYS_OVR_6, EVSYS_OVR_7, EVSYS_OVR_8,
                                                                              EVSYS_OVR_9 */
 void PAC_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
-void TAL_0_Handler(void) __attribute__((weak, alias("Dummy_Handler"))); /* TAL_BRK */
-void TAL_1_Handler(void) __attribute__((weak, alias("Dummy_Handler"))); /* TAL_IPS_0, TAL_IPS_1 */
 void RAMECC_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
 void SERCOM0_0_Handler(void) __attribute__((weak, alias("Dummy_Handler"))); /* SERCOM0_0 */
 void SERCOM0_1_Handler(void) __attribute__((weak, alias("Dummy_Handler"))); /* SERCOM0_1 */
@@ -314,27 +312,27 @@ void SDHC1_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
 #endif
 
 /* Exception Table */
-__attribute__((section(".vectors"), used)) const DeviceVectors exception_table
+__attribute__((section(".vectors"))) const DeviceVectors exception_table
     = {
 
         /* Configure Initial Stack Pointer, using linker-generated symbols */
         .pvStack = (void *)(&_estack),
 
-        .pfnReset_Handler      = (void *)Reset_Handler,
-        .pfnNMI_Handler        = (void *)NMI_Handler,
-        .pfnHardFault_Handler  = (void *)HardFault_Handler,
-        .pfnMemManage_Handler  = (void *)MemManage_Handler,
-        .pfnBusFault_Handler   = (void *)BusFault_Handler,
-        .pfnUsageFault_Handler = (void *)UsageFault_Handler,
-        .pvReservedM9          = (void *)(0UL), /* Reserved */
-        .pvReservedM8          = (void *)(0UL), /* Reserved */
-        .pvReservedM7          = (void *)(0UL), /* Reserved */
-        .pvReservedM6          = (void *)(0UL), /* Reserved */
-        .pfnSVC_Handler        = (void *)SVC_Handler,
-        .pfnDebugMon_Handler   = (void *)DebugMon_Handler,
-        .pvReservedM3          = (void *)(0UL), /* Reserved */
-        .pfnPendSV_Handler     = (void *)PendSV_Handler,
-        .pfnSysTick_Handler    = (void *)SysTick_Handler,
+        .pfnReset_Handler          = (void *)Reset_Handler,
+        .pfnNonMaskableInt_Handler = (void *)NonMaskableInt_Handler,
+        .pfnHardFault_Handler      = (void *)HardFault_Handler,
+        .pfnMemManagement_Handler  = (void *)MemManagement_Handler,
+        .pfnBusFault_Handler       = (void *)BusFault_Handler,
+        .pfnUsageFault_Handler     = (void *)UsageFault_Handler,
+        .pvReservedM9              = (void *)(0UL), /* Reserved */
+        .pvReservedM8              = (void *)(0UL), /* Reserved */
+        .pvReservedM7              = (void *)(0UL), /* Reserved */
+        .pvReservedM6              = (void *)(0UL), /* Reserved */
+        .pfnSVCall_Handler         = (void *)SVCall_Handler,
+        .pfnDebugMonitor_Handler   = (void *)DebugMonitor_Handler,
+        .pvReservedM3              = (void *)(0UL), /* Reserved */
+        .pfnPendSV_Handler         = (void *)PendSV_Handler,
+        .pfnSysTick_Handler        = (void *)SysTick_Handler,
 
         /* Configurable interrupts */
         .pfnPM_Handler        = (void *)PM_Handler,        /*  0 Power Manager */
@@ -409,8 +407,8 @@ __attribute__((section(".vectors"), used)) const DeviceVectors exception_table
                                                               EVSYS_OVR_10, EVSYS_OVR_11, EVSYS_OVR_4, EVSYS_OVR_5,
                                                               EVSYS_OVR_6, EVSYS_OVR_7, EVSYS_OVR_8, EVSYS_OVR_9 */
         .pfnPAC_Handler       = (void *)PAC_Handler,       /* 41 Peripheral Access Controller */
-        .pfnTAL_0_Handler     = (void *)TAL_0_Handler,     /* 42 TAL_BRK */
-        .pfnTAL_1_Handler     = (void *)TAL_1_Handler,     /* 43 TAL_IPS_0, TAL_IPS_1 */
+        .pvReserved42         = (void *)(0UL),             /* 42 Reserved */
+        .pvReserved43         = (void *)(0UL),             /* 43 Reserved */
         .pvReserved44         = (void *)(0UL),             /* 44 Reserved */
         .pfnRAMECC_Handler    = (void *)RAMECC_Handler,    /* 45 RAM ECC */
         .pfnSERCOM0_0_Handler = (void *)SERCOM0_0_Handler, /* 46 SERCOM0_0 */
@@ -660,7 +658,7 @@ void Reset_Handler(void)
 #endif
 
 	/* Initialize the C library */
-	//__libc_init_array();
+	__libc_init_array();
 
 	/* Branch to main function */
 	main();

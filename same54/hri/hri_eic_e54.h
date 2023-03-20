@@ -3,41 +3,32 @@
  *
  * \brief SAM EIC
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (c) 2016-2018 Microchip Technology Inc. and its subsidiaries.
  *
  * \asf_license_start
  *
  * \page License
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ * Subject to your compliance with these terms, you may use Microchip
+ * software and any derivatives exclusively with Microchip products.
+ * It is your responsibility to comply with third party license terms applicable
+ * to your use of third party software (including open source software) that
+ * may accompany Microchip software.
  *
- * 1. Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- * 3. The name of Atmel may not be used to endorse or promote products derived
- *    from this software without specific prior written permission.
- *
- * 4. This software may only be redistributed and used in connection with an
- *    Atmel microcontroller product.
- *
- * THIS SOFTWARE IS PROVIDED BY ATMEL "AS IS" AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE
- * EXPRESSLY AND SPECIFICALLY DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
- * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES,
+ * WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE,
+ * INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY,
+ * AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT WILL MICROCHIP BE
+ * LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUENTIAL
+ * LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND WHATSOEVER RELATED TO THE
+ * SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS BEEN ADVISED OF THE
+ * POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE FULLEST EXTENT
+ * ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN ANY WAY
+ * RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+ * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
  *
  * \asf_license_stop
+ *
  */
 
 #ifdef _SAME54_EIC_COMPONENT_
@@ -81,6 +72,52 @@ static inline void hri_eic_wait_for_sync(const void *const hw, hri_eic_syncbusy_
 static inline bool hri_eic_is_syncing(const void *const hw, hri_eic_syncbusy_reg_t reg)
 {
 	return ((Eic *)hw)->SYNCBUSY.reg & reg;
+}
+
+static inline bool hri_eic_get_NMIFLAG_NMI_bit(const void *const hw)
+{
+	return (((Eic *)hw)->NMIFLAG.reg & EIC_NMIFLAG_NMI) >> EIC_NMIFLAG_NMI_Pos;
+}
+
+static inline void hri_eic_clear_NMIFLAG_NMI_bit(const void *const hw)
+{
+	((Eic *)hw)->NMIFLAG.reg = EIC_NMIFLAG_NMI;
+}
+
+static inline hri_eic_nmiflag_reg_t hri_eic_get_NMIFLAG_reg(const void *const hw, hri_eic_nmiflag_reg_t mask)
+{
+	uint16_t tmp;
+	tmp = ((Eic *)hw)->NMIFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_eic_nmiflag_reg_t hri_eic_read_NMIFLAG_reg(const void *const hw)
+{
+	return ((Eic *)hw)->NMIFLAG.reg;
+}
+
+static inline void hri_eic_clear_NMIFLAG_reg(const void *const hw, hri_eic_nmiflag_reg_t mask)
+{
+	((Eic *)hw)->NMIFLAG.reg = mask;
+}
+
+static inline hri_eic_intflag_reg_t hri_eic_get_INTFLAG_reg(const void *const hw, hri_eic_intflag_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Eic *)hw)->INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_eic_intflag_reg_t hri_eic_read_INTFLAG_reg(const void *const hw)
+{
+	return ((Eic *)hw)->INTFLAG.reg;
+}
+
+static inline void hri_eic_clear_INTFLAG_reg(const void *const hw, hri_eic_intflag_reg_t mask)
+{
+	((Eic *)hw)->INTFLAG.reg = mask;
 }
 
 static inline void hri_eic_set_INTEN_EXTINT_bf(const void *const hw, hri_eic_intenset_reg_t mask)
@@ -144,57 +181,57 @@ static inline void hri_eic_clear_INTEN_reg(const void *const hw, hri_eic_intense
 	((Eic *)hw)->INTENCLR.reg = mask;
 }
 
-static inline bool hri_eic_get_NMIFLAG_NMI_bit(const void *const hw)
+static inline bool hri_eic_get_SYNCBUSY_SWRST_bit(const void *const hw)
 {
-	return (((Eic *)hw)->NMIFLAG.reg & EIC_NMIFLAG_NMI) >> EIC_NMIFLAG_NMI_Pos;
+	return (((Eic *)hw)->SYNCBUSY.reg & EIC_SYNCBUSY_SWRST) >> EIC_SYNCBUSY_SWRST_Pos;
 }
 
-static inline void hri_eic_clear_NMIFLAG_NMI_bit(const void *const hw)
+static inline bool hri_eic_get_SYNCBUSY_ENABLE_bit(const void *const hw)
 {
-	((Eic *)hw)->NMIFLAG.reg = EIC_NMIFLAG_NMI;
+	return (((Eic *)hw)->SYNCBUSY.reg & EIC_SYNCBUSY_ENABLE) >> EIC_SYNCBUSY_ENABLE_Pos;
 }
 
-static inline hri_eic_nmiflag_reg_t hri_eic_get_NMIFLAG_reg(const void *const hw, hri_eic_nmiflag_reg_t mask)
-{
-	uint16_t tmp;
-	tmp = ((Eic *)hw)->NMIFLAG.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_eic_nmiflag_reg_t hri_eic_read_NMIFLAG_reg(const void *const hw)
-{
-	return ((Eic *)hw)->NMIFLAG.reg;
-}
-
-static inline void hri_eic_clear_NMIFLAG_reg(const void *const hw, hri_eic_nmiflag_reg_t mask)
-{
-	((Eic *)hw)->NMIFLAG.reg = mask;
-}
-
-static inline hri_eic_intflag_reg_t hri_eic_get_INTFLAG_reg(const void *const hw, hri_eic_intflag_reg_t mask)
+static inline hri_eic_syncbusy_reg_t hri_eic_get_SYNCBUSY_reg(const void *const hw, hri_eic_syncbusy_reg_t mask)
 {
 	uint32_t tmp;
-	tmp = ((Eic *)hw)->INTFLAG.reg;
+	tmp = ((Eic *)hw)->SYNCBUSY.reg;
 	tmp &= mask;
 	return tmp;
 }
 
-static inline hri_eic_intflag_reg_t hri_eic_read_INTFLAG_reg(const void *const hw)
+static inline hri_eic_syncbusy_reg_t hri_eic_read_SYNCBUSY_reg(const void *const hw)
 {
-	return ((Eic *)hw)->INTFLAG.reg;
+	return ((Eic *)hw)->SYNCBUSY.reg;
 }
 
-static inline void hri_eic_clear_INTFLAG_reg(const void *const hw, hri_eic_intflag_reg_t mask)
+static inline hri_eic_pinstate_reg_t hri_eic_get_PINSTATE_PINSTATE_bf(const void *const hw, hri_eic_pinstate_reg_t mask)
 {
-	((Eic *)hw)->INTFLAG.reg = mask;
+	return (((Eic *)hw)->PINSTATE.reg & EIC_PINSTATE_PINSTATE(mask)) >> EIC_PINSTATE_PINSTATE_Pos;
+}
+
+static inline hri_eic_pinstate_reg_t hri_eic_read_PINSTATE_PINSTATE_bf(const void *const hw)
+{
+	return (((Eic *)hw)->PINSTATE.reg & EIC_PINSTATE_PINSTATE_Msk) >> EIC_PINSTATE_PINSTATE_Pos;
+}
+
+static inline hri_eic_pinstate_reg_t hri_eic_get_PINSTATE_reg(const void *const hw, hri_eic_pinstate_reg_t mask)
+{
+	uint32_t tmp;
+	tmp = ((Eic *)hw)->PINSTATE.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_eic_pinstate_reg_t hri_eic_read_PINSTATE_reg(const void *const hw)
+{
+	return ((Eic *)hw)->PINSTATE.reg;
 }
 
 static inline void hri_eic_set_CTRLA_SWRST_bit(const void *const hw)
 {
 	EIC_CRITICAL_SECTION_ENTER();
-	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_SWRST);
 	((Eic *)hw)->CTRLA.reg |= EIC_CTRLA_SWRST;
+	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_SWRST);
 	EIC_CRITICAL_SECTION_LEAVE();
 }
 
@@ -210,8 +247,8 @@ static inline bool hri_eic_get_CTRLA_SWRST_bit(const void *const hw)
 static inline void hri_eic_set_CTRLA_ENABLE_bit(const void *const hw)
 {
 	EIC_CRITICAL_SECTION_ENTER();
-	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_SWRST | EIC_SYNCBUSY_ENABLE);
 	((Eic *)hw)->CTRLA.reg |= EIC_CTRLA_ENABLE;
+	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_SWRST | EIC_SYNCBUSY_ENABLE);
 	EIC_CRITICAL_SECTION_LEAVE();
 }
 
@@ -228,35 +265,35 @@ static inline void hri_eic_write_CTRLA_ENABLE_bit(const void *const hw, bool val
 {
 	uint8_t tmp;
 	EIC_CRITICAL_SECTION_ENTER();
-	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_SWRST | EIC_SYNCBUSY_ENABLE);
 	tmp = ((Eic *)hw)->CTRLA.reg;
 	tmp &= ~EIC_CTRLA_ENABLE;
 	tmp |= value << EIC_CTRLA_ENABLE_Pos;
 	((Eic *)hw)->CTRLA.reg = tmp;
+	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_SWRST | EIC_SYNCBUSY_ENABLE);
 	EIC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_eic_clear_CTRLA_ENABLE_bit(const void *const hw)
 {
 	EIC_CRITICAL_SECTION_ENTER();
-	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_SWRST | EIC_SYNCBUSY_ENABLE);
 	((Eic *)hw)->CTRLA.reg &= ~EIC_CTRLA_ENABLE;
+	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_SWRST | EIC_SYNCBUSY_ENABLE);
 	EIC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_eic_toggle_CTRLA_ENABLE_bit(const void *const hw)
 {
 	EIC_CRITICAL_SECTION_ENTER();
-	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_SWRST | EIC_SYNCBUSY_ENABLE);
 	((Eic *)hw)->CTRLA.reg ^= EIC_CTRLA_ENABLE;
+	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_SWRST | EIC_SYNCBUSY_ENABLE);
 	EIC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_eic_set_CTRLA_CKSEL_bit(const void *const hw)
 {
 	EIC_CRITICAL_SECTION_ENTER();
-	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_MASK);
 	((Eic *)hw)->CTRLA.reg |= EIC_CTRLA_CKSEL;
+	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_MASK);
 	EIC_CRITICAL_SECTION_LEAVE();
 }
 
@@ -272,27 +309,27 @@ static inline void hri_eic_write_CTRLA_CKSEL_bit(const void *const hw, bool valu
 {
 	uint8_t tmp;
 	EIC_CRITICAL_SECTION_ENTER();
-	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_MASK);
 	tmp = ((Eic *)hw)->CTRLA.reg;
 	tmp &= ~EIC_CTRLA_CKSEL;
 	tmp |= value << EIC_CTRLA_CKSEL_Pos;
 	((Eic *)hw)->CTRLA.reg = tmp;
+	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_MASK);
 	EIC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_eic_clear_CTRLA_CKSEL_bit(const void *const hw)
 {
 	EIC_CRITICAL_SECTION_ENTER();
-	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_MASK);
 	((Eic *)hw)->CTRLA.reg &= ~EIC_CTRLA_CKSEL;
+	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_MASK);
 	EIC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_eic_toggle_CTRLA_CKSEL_bit(const void *const hw)
 {
 	EIC_CRITICAL_SECTION_ENTER();
-	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_MASK);
 	((Eic *)hw)->CTRLA.reg ^= EIC_CTRLA_CKSEL;
+	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_MASK);
 	EIC_CRITICAL_SECTION_LEAVE();
 }
 
@@ -300,12 +337,14 @@ static inline void hri_eic_set_CTRLA_reg(const void *const hw, hri_eic_ctrla_reg
 {
 	EIC_CRITICAL_SECTION_ENTER();
 	((Eic *)hw)->CTRLA.reg |= mask;
+	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_MASK);
 	EIC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_eic_ctrla_reg_t hri_eic_get_CTRLA_reg(const void *const hw, hri_eic_ctrla_reg_t mask)
 {
 	uint8_t tmp;
+	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_MASK);
 	tmp = ((Eic *)hw)->CTRLA.reg;
 	tmp &= mask;
 	return tmp;
@@ -315,6 +354,7 @@ static inline void hri_eic_write_CTRLA_reg(const void *const hw, hri_eic_ctrla_r
 {
 	EIC_CRITICAL_SECTION_ENTER();
 	((Eic *)hw)->CTRLA.reg = data;
+	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_MASK);
 	EIC_CRITICAL_SECTION_LEAVE();
 }
 
@@ -322,6 +362,7 @@ static inline void hri_eic_clear_CTRLA_reg(const void *const hw, hri_eic_ctrla_r
 {
 	EIC_CRITICAL_SECTION_ENTER();
 	((Eic *)hw)->CTRLA.reg &= ~mask;
+	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_MASK);
 	EIC_CRITICAL_SECTION_LEAVE();
 }
 
@@ -329,11 +370,13 @@ static inline void hri_eic_toggle_CTRLA_reg(const void *const hw, hri_eic_ctrla_
 {
 	EIC_CRITICAL_SECTION_ENTER();
 	((Eic *)hw)->CTRLA.reg ^= mask;
+	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_MASK);
 	EIC_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_eic_ctrla_reg_t hri_eic_read_CTRLA_reg(const void *const hw)
 {
+	hri_eic_wait_for_sync(hw, EIC_SYNCBUSY_MASK);
 	return ((Eic *)hw)->CTRLA.reg;
 }
 
@@ -1785,52 +1828,6 @@ static inline void hri_eic_toggle_DPRESCALER_reg(const void *const hw, hri_eic_d
 static inline hri_eic_dprescaler_reg_t hri_eic_read_DPRESCALER_reg(const void *const hw)
 {
 	return ((Eic *)hw)->DPRESCALER.reg;
-}
-
-static inline bool hri_eic_get_SYNCBUSY_SWRST_bit(const void *const hw)
-{
-	return (((Eic *)hw)->SYNCBUSY.reg & EIC_SYNCBUSY_SWRST) >> EIC_SYNCBUSY_SWRST_Pos;
-}
-
-static inline bool hri_eic_get_SYNCBUSY_ENABLE_bit(const void *const hw)
-{
-	return (((Eic *)hw)->SYNCBUSY.reg & EIC_SYNCBUSY_ENABLE) >> EIC_SYNCBUSY_ENABLE_Pos;
-}
-
-static inline hri_eic_syncbusy_reg_t hri_eic_get_SYNCBUSY_reg(const void *const hw, hri_eic_syncbusy_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Eic *)hw)->SYNCBUSY.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_eic_syncbusy_reg_t hri_eic_read_SYNCBUSY_reg(const void *const hw)
-{
-	return ((Eic *)hw)->SYNCBUSY.reg;
-}
-
-static inline hri_eic_pinstate_reg_t hri_eic_get_PINSTATE_PINSTATE_bf(const void *const hw, hri_eic_pinstate_reg_t mask)
-{
-	return (((Eic *)hw)->PINSTATE.reg & EIC_PINSTATE_PINSTATE(mask)) >> EIC_PINSTATE_PINSTATE_Pos;
-}
-
-static inline hri_eic_pinstate_reg_t hri_eic_read_PINSTATE_PINSTATE_bf(const void *const hw)
-{
-	return (((Eic *)hw)->PINSTATE.reg & EIC_PINSTATE_PINSTATE_Msk) >> EIC_PINSTATE_PINSTATE_Pos;
-}
-
-static inline hri_eic_pinstate_reg_t hri_eic_get_PINSTATE_reg(const void *const hw, hri_eic_pinstate_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((Eic *)hw)->PINSTATE.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_eic_pinstate_reg_t hri_eic_read_PINSTATE_reg(const void *const hw)
-{
-	return ((Eic *)hw)->PINSTATE.reg;
 }
 
 #ifdef __cplusplus

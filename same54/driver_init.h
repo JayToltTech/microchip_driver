@@ -21,85 +21,16 @@ extern "C" {
 #include <hal_io.h>
 #include <hal_sleep.h>
 
-#include <hal_adc_sync.h>
+#include <hal_usart_os.h>
 
-#include <hal_dac_sync.h>
+#define EDBG_COM_BUFFER_SIZE 16
 
-#include <hal_evsys.h>
+extern struct usart_os_descriptor EDBG_COM;
+extern uint8_t                    EDBG_COM_buffer[];
 
-#include <hal_flash.h>
-
-#include <hal_timer.h>
-#include <hal_spi_m_sync.h>
-
-#include <hal_i2c_m_sync.h>
-#include <hal_usart_async.h>
-
-#include <hal_spi_m_dma.h>
-
-#include <hal_delay.h>
-#include <hal_pwm.h>
-#include <hpl_tc_base.h>
-
-#include <hal_rand_sync.h>
-
-#include "hal_usb_device.h"
-
-extern struct adc_sync_descriptor ADC_0;
-
-extern struct dac_sync_descriptor DAC_0;
-
-extern struct flash_descriptor      FLASH_0;
-extern struct timer_descriptor      TIMER_0;
-extern struct spi_m_sync_descriptor SPI_M_SYNC_SERCOM0;
-
-extern struct i2c_m_sync_desc        I2C_M_SERCOM1;
-extern struct usart_async_descriptor USART_ASYNC_SERCOM2;
-
-extern struct spi_m_dma_descriptor SPI_M_DMA_SERCOM3;
-
-extern struct pwm_descriptor PWM_0;
-
-extern struct rand_sync_desc RAND_0;
-
-void ADC_0_PORT_init(void);
-void ADC_0_CLOCK_init(void);
-void ADC_0_init(void);
-
-void DAC_0_PORT_init(void);
-void DAC_0_CLOCK_init(void);
-void DAC_0_init(void);
-
-void FLASH_0_init(void);
-void FLASH_0_CLOCK_init(void);
-
-void SPI_M_SYNC_SERCOM0_PORT_init(void);
-void SPI_M_SYNC_SERCOM0_CLOCK_init(void);
-void SPI_M_SYNC_SERCOM0_init(void);
-
-void I2C_M_SERCOM1_CLOCK_init(void);
-void I2C_M_SERCOM1_init(void);
-void I2C_M_SERCOM1_PORT_init(void);
-
-void USART_ASYNC_SERCOM2_PORT_init(void);
-void USART_ASYNC_SERCOM2_CLOCK_init(void);
-void USART_ASYNC_SERCOM2_init(void);
-
-void SPI_M_DMA_SERCOM3_PORT_init(void);
-void SPI_M_DMA_SERCOM3_CLOCK_init(void);
-void SPI_M_DMA_SERCOM3_init(void);
-
-void delay_driver_init(void);
-
-void PWM_0_PORT_init(void);
-void PWM_0_CLOCK_init(void);
-void PWM_0_init(void);
-
-void RAND_0_CLOCK_init(void);
-void RAND_0_init(void);
-
-void USB_DEVICE_INSTANCE_CLOCK_init(void);
-void USB_DEVICE_INSTANCE_init(void);
+void EDBG_COM_PORT_init(void);
+void EDBG_COM_CLOCK_init(void);
+void EDBG_COM_init(void);
 
 /**
  * \brief Perform system initialization, initialize pins and clocks for

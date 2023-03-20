@@ -8,9 +8,9 @@
 #ifndef ATMEL_START_PINS_H_INCLUDED
 #define ATMEL_START_PINS_H_INCLUDED
 
-#include <hal_gpio.h>
+#include "hal_gpio.h"
 
-// SAMD51 has 14 pin functions
+// SAME54 has 14 pin functions
 
 #define GPIO_PIN_FUNCTION_A 0
 #define GPIO_PIN_FUNCTION_B 1
@@ -27,17 +27,8 @@
 #define GPIO_PIN_FUNCTION_M 12
 #define GPIO_PIN_FUNCTION_N 13
 
-#define PA04 GPIO(GPIO_PORTA, 4)
-#define PA05 GPIO(GPIO_PORTA, 5)
-#define PA06 GPIO(GPIO_PORTA, 6)
-#define PA08 GPIO(GPIO_PORTA, 8)
-#define PA09 GPIO(GPIO_PORTA, 9)
-#define PA16 GPIO(GPIO_PORTA, 16)
-#define PA17 GPIO(GPIO_PORTA, 17)
-#define PA18 GPIO(GPIO_PORTA, 18)
-#define PA22 GPIO(GPIO_PORTA, 22)
-#define PA23 GPIO(GPIO_PORTA, 23)
-#define PA24 GPIO(GPIO_PORTA, 24)
-#define PA25 GPIO(GPIO_PORTA, 25)
+#define PB24 GPIO(GPIO_PORTB, 24)
+#define PB25 GPIO(GPIO_PORTB, 25)
+#define LED0 GPIO(GPIO_PORTC, 18)
 
-#endif // ATMEL_START_PINS_H_INCLUDED
+#endif  // ATMEL_START_PINS_H_INCLUDED

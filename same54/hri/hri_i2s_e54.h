@@ -3,41 +3,32 @@
  *
  * \brief SAM I2S
  *
- * Copyright (C) 2016 Atmel Corporation. All rights reserved.
+ * Copyright (c) 2016-2018 Microchip Technology Inc. and its subsidiaries.
  *
  * \asf_license_start
  *
  * \page License
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ * Subject to your compliance with these terms, you may use Microchip
+ * software and any derivatives exclusively with Microchip products.
+ * It is your responsibility to comply with third party license terms applicable
+ * to your use of third party software (including open source software) that
+ * may accompany Microchip software.
  *
- * 1. Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- * 3. The name of Atmel may not be used to endorse or promote products derived
- *    from this software without specific prior written permission.
- *
- * 4. This software may only be redistributed and used in connection with an
- *    Atmel microcontroller product.
- *
- * THIS SOFTWARE IS PROVIDED BY ATMEL "AS IS" AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE
- * EXPRESSLY AND SPECIFICALLY DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
- * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES,
+ * WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE,
+ * INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY,
+ * AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT WILL MICROCHIP BE
+ * LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUENTIAL
+ * LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND WHATSOEVER RELATED TO THE
+ * SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS BEEN ADVISED OF THE
+ * POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE FULLEST EXTENT
+ * ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN ANY WAY
+ * RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+ * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
  *
  * \asf_license_stop
+ *
  */
 
 #ifdef _SAME54_I2S_COMPONENT_
@@ -78,6 +69,184 @@ static inline void hri_i2s_wait_for_sync(const void *const hw, hri_i2s_syncbusy_
 static inline bool hri_i2s_is_syncing(const void *const hw, hri_i2s_syncbusy_reg_t reg)
 {
 	return ((I2s *)hw)->SYNCBUSY.reg & reg;
+}
+
+static inline bool hri_i2s_get_INTFLAG_RXRDY0_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXRDY0) >> I2S_INTFLAG_RXRDY0_Pos;
+}
+
+static inline void hri_i2s_clear_INTFLAG_RXRDY0_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXRDY0;
+}
+
+static inline bool hri_i2s_get_INTFLAG_RXRDY1_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXRDY1) >> I2S_INTFLAG_RXRDY1_Pos;
+}
+
+static inline void hri_i2s_clear_INTFLAG_RXRDY1_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXRDY1;
+}
+
+static inline bool hri_i2s_get_INTFLAG_RXOR0_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXOR0) >> I2S_INTFLAG_RXOR0_Pos;
+}
+
+static inline void hri_i2s_clear_INTFLAG_RXOR0_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXOR0;
+}
+
+static inline bool hri_i2s_get_INTFLAG_RXOR1_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXOR1) >> I2S_INTFLAG_RXOR1_Pos;
+}
+
+static inline void hri_i2s_clear_INTFLAG_RXOR1_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXOR1;
+}
+
+static inline bool hri_i2s_get_INTFLAG_TXRDY0_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXRDY0) >> I2S_INTFLAG_TXRDY0_Pos;
+}
+
+static inline void hri_i2s_clear_INTFLAG_TXRDY0_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXRDY0;
+}
+
+static inline bool hri_i2s_get_INTFLAG_TXRDY1_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXRDY1) >> I2S_INTFLAG_TXRDY1_Pos;
+}
+
+static inline void hri_i2s_clear_INTFLAG_TXRDY1_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXRDY1;
+}
+
+static inline bool hri_i2s_get_INTFLAG_TXUR0_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXUR0) >> I2S_INTFLAG_TXUR0_Pos;
+}
+
+static inline void hri_i2s_clear_INTFLAG_TXUR0_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXUR0;
+}
+
+static inline bool hri_i2s_get_INTFLAG_TXUR1_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXUR1) >> I2S_INTFLAG_TXUR1_Pos;
+}
+
+static inline void hri_i2s_clear_INTFLAG_TXUR1_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXUR1;
+}
+
+static inline bool hri_i2s_get_interrupt_RXRDY0_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXRDY0) >> I2S_INTFLAG_RXRDY0_Pos;
+}
+
+static inline void hri_i2s_clear_interrupt_RXRDY0_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXRDY0;
+}
+
+static inline bool hri_i2s_get_interrupt_RXRDY1_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXRDY1) >> I2S_INTFLAG_RXRDY1_Pos;
+}
+
+static inline void hri_i2s_clear_interrupt_RXRDY1_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXRDY1;
+}
+
+static inline bool hri_i2s_get_interrupt_RXOR0_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXOR0) >> I2S_INTFLAG_RXOR0_Pos;
+}
+
+static inline void hri_i2s_clear_interrupt_RXOR0_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXOR0;
+}
+
+static inline bool hri_i2s_get_interrupt_RXOR1_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXOR1) >> I2S_INTFLAG_RXOR1_Pos;
+}
+
+static inline void hri_i2s_clear_interrupt_RXOR1_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXOR1;
+}
+
+static inline bool hri_i2s_get_interrupt_TXRDY0_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXRDY0) >> I2S_INTFLAG_TXRDY0_Pos;
+}
+
+static inline void hri_i2s_clear_interrupt_TXRDY0_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXRDY0;
+}
+
+static inline bool hri_i2s_get_interrupt_TXRDY1_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXRDY1) >> I2S_INTFLAG_TXRDY1_Pos;
+}
+
+static inline void hri_i2s_clear_interrupt_TXRDY1_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXRDY1;
+}
+
+static inline bool hri_i2s_get_interrupt_TXUR0_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXUR0) >> I2S_INTFLAG_TXUR0_Pos;
+}
+
+static inline void hri_i2s_clear_interrupt_TXUR0_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXUR0;
+}
+
+static inline bool hri_i2s_get_interrupt_TXUR1_bit(const void *const hw)
+{
+	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXUR1) >> I2S_INTFLAG_TXUR1_Pos;
+}
+
+static inline void hri_i2s_clear_interrupt_TXUR1_bit(const void *const hw)
+{
+	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXUR1;
+}
+
+static inline hri_i2s_intflag_reg_t hri_i2s_get_INTFLAG_reg(const void *const hw, hri_i2s_intflag_reg_t mask)
+{
+	uint16_t tmp;
+	tmp = ((I2s *)hw)->INTFLAG.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_i2s_intflag_reg_t hri_i2s_read_INTFLAG_reg(const void *const hw)
+{
+	return ((I2s *)hw)->INTFLAG.reg;
+}
+
+static inline void hri_i2s_clear_INTFLAG_reg(const void *const hw, hri_i2s_intflag_reg_t mask)
+{
+	((I2s *)hw)->INTFLAG.reg = mask;
 }
 
 static inline void hri_i2s_set_INTEN_RXRDY0_bit(const void *const hw)
@@ -301,196 +470,91 @@ static inline void hri_i2s_clear_INTEN_reg(const void *const hw, hri_i2s_intense
 	((I2s *)hw)->INTENCLR.reg = mask;
 }
 
-static inline bool hri_i2s_get_INTFLAG_RXRDY0_bit(const void *const hw)
+static inline bool hri_i2s_get_SYNCBUSY_SWRST_bit(const void *const hw)
 {
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXRDY0) >> I2S_INTFLAG_RXRDY0_Pos;
+	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_SWRST) >> I2S_SYNCBUSY_SWRST_Pos;
 }
 
-static inline void hri_i2s_clear_INTFLAG_RXRDY0_bit(const void *const hw)
+static inline bool hri_i2s_get_SYNCBUSY_ENABLE_bit(const void *const hw)
 {
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXRDY0;
+	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_ENABLE) >> I2S_SYNCBUSY_ENABLE_Pos;
 }
 
-static inline bool hri_i2s_get_INTFLAG_RXRDY1_bit(const void *const hw)
+static inline bool hri_i2s_get_SYNCBUSY_CKEN0_bit(const void *const hw)
 {
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXRDY1) >> I2S_INTFLAG_RXRDY1_Pos;
+	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_CKEN0) >> I2S_SYNCBUSY_CKEN0_Pos;
 }
 
-static inline void hri_i2s_clear_INTFLAG_RXRDY1_bit(const void *const hw)
+static inline bool hri_i2s_get_SYNCBUSY_CKEN1_bit(const void *const hw)
 {
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXRDY1;
+	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_CKEN1) >> I2S_SYNCBUSY_CKEN1_Pos;
 }
 
-static inline bool hri_i2s_get_INTFLAG_RXOR0_bit(const void *const hw)
+static inline bool hri_i2s_get_SYNCBUSY_TXEN_bit(const void *const hw)
 {
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXOR0) >> I2S_INTFLAG_RXOR0_Pos;
+	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_TXEN) >> I2S_SYNCBUSY_TXEN_Pos;
 }
 
-static inline void hri_i2s_clear_INTFLAG_RXOR0_bit(const void *const hw)
+static inline bool hri_i2s_get_SYNCBUSY_RXEN_bit(const void *const hw)
 {
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXOR0;
+	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_RXEN) >> I2S_SYNCBUSY_RXEN_Pos;
 }
 
-static inline bool hri_i2s_get_INTFLAG_RXOR1_bit(const void *const hw)
+static inline bool hri_i2s_get_SYNCBUSY_TXDATA_bit(const void *const hw)
 {
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXOR1) >> I2S_INTFLAG_RXOR1_Pos;
+	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_TXDATA) >> I2S_SYNCBUSY_TXDATA_Pos;
 }
 
-static inline void hri_i2s_clear_INTFLAG_RXOR1_bit(const void *const hw)
+static inline bool hri_i2s_get_SYNCBUSY_RXDATA_bit(const void *const hw)
 {
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXOR1;
+	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_RXDATA) >> I2S_SYNCBUSY_RXDATA_Pos;
 }
 
-static inline bool hri_i2s_get_INTFLAG_TXRDY0_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXRDY0) >> I2S_INTFLAG_TXRDY0_Pos;
-}
-
-static inline void hri_i2s_clear_INTFLAG_TXRDY0_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXRDY0;
-}
-
-static inline bool hri_i2s_get_INTFLAG_TXRDY1_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXRDY1) >> I2S_INTFLAG_TXRDY1_Pos;
-}
-
-static inline void hri_i2s_clear_INTFLAG_TXRDY1_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXRDY1;
-}
-
-static inline bool hri_i2s_get_INTFLAG_TXUR0_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXUR0) >> I2S_INTFLAG_TXUR0_Pos;
-}
-
-static inline void hri_i2s_clear_INTFLAG_TXUR0_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXUR0;
-}
-
-static inline bool hri_i2s_get_INTFLAG_TXUR1_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXUR1) >> I2S_INTFLAG_TXUR1_Pos;
-}
-
-static inline void hri_i2s_clear_INTFLAG_TXUR1_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXUR1;
-}
-
-static inline bool hri_i2s_get_interrupt_RXRDY0_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXRDY0) >> I2S_INTFLAG_RXRDY0_Pos;
-}
-
-static inline void hri_i2s_clear_interrupt_RXRDY0_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXRDY0;
-}
-
-static inline bool hri_i2s_get_interrupt_RXRDY1_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXRDY1) >> I2S_INTFLAG_RXRDY1_Pos;
-}
-
-static inline void hri_i2s_clear_interrupt_RXRDY1_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXRDY1;
-}
-
-static inline bool hri_i2s_get_interrupt_RXOR0_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXOR0) >> I2S_INTFLAG_RXOR0_Pos;
-}
-
-static inline void hri_i2s_clear_interrupt_RXOR0_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXOR0;
-}
-
-static inline bool hri_i2s_get_interrupt_RXOR1_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_RXOR1) >> I2S_INTFLAG_RXOR1_Pos;
-}
-
-static inline void hri_i2s_clear_interrupt_RXOR1_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_RXOR1;
-}
-
-static inline bool hri_i2s_get_interrupt_TXRDY0_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXRDY0) >> I2S_INTFLAG_TXRDY0_Pos;
-}
-
-static inline void hri_i2s_clear_interrupt_TXRDY0_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXRDY0;
-}
-
-static inline bool hri_i2s_get_interrupt_TXRDY1_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXRDY1) >> I2S_INTFLAG_TXRDY1_Pos;
-}
-
-static inline void hri_i2s_clear_interrupt_TXRDY1_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXRDY1;
-}
-
-static inline bool hri_i2s_get_interrupt_TXUR0_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXUR0) >> I2S_INTFLAG_TXUR0_Pos;
-}
-
-static inline void hri_i2s_clear_interrupt_TXUR0_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXUR0;
-}
-
-static inline bool hri_i2s_get_interrupt_TXUR1_bit(const void *const hw)
-{
-	return (((I2s *)hw)->INTFLAG.reg & I2S_INTFLAG_TXUR1) >> I2S_INTFLAG_TXUR1_Pos;
-}
-
-static inline void hri_i2s_clear_interrupt_TXUR1_bit(const void *const hw)
-{
-	((I2s *)hw)->INTFLAG.reg = I2S_INTFLAG_TXUR1;
-}
-
-static inline hri_i2s_intflag_reg_t hri_i2s_get_INTFLAG_reg(const void *const hw, hri_i2s_intflag_reg_t mask)
+static inline hri_i2s_syncbusy_reg_t hri_i2s_get_SYNCBUSY_reg(const void *const hw, hri_i2s_syncbusy_reg_t mask)
 {
 	uint16_t tmp;
-	tmp = ((I2s *)hw)->INTFLAG.reg;
+	tmp = ((I2s *)hw)->SYNCBUSY.reg;
 	tmp &= mask;
 	return tmp;
 }
 
-static inline hri_i2s_intflag_reg_t hri_i2s_read_INTFLAG_reg(const void *const hw)
+static inline hri_i2s_syncbusy_reg_t hri_i2s_read_SYNCBUSY_reg(const void *const hw)
 {
-	return ((I2s *)hw)->INTFLAG.reg;
+	return ((I2s *)hw)->SYNCBUSY.reg;
 }
 
-static inline void hri_i2s_clear_INTFLAG_reg(const void *const hw, hri_i2s_intflag_reg_t mask)
+static inline hri_i2s_rxdata_reg_t hri_i2s_get_RXDATA_DATA_bf(const void *const hw, hri_i2s_rxdata_reg_t mask)
 {
-	((I2s *)hw)->INTFLAG.reg = mask;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
+	return (((I2s *)hw)->RXDATA.reg & I2S_RXDATA_DATA(mask)) >> I2S_RXDATA_DATA_Pos;
 }
 
-static inline void hri_i2s_write_TXDATA_reg(const void *const hw, hri_i2s_txdata_reg_t data)
+static inline hri_i2s_rxdata_reg_t hri_i2s_read_RXDATA_DATA_bf(const void *const hw)
 {
-	I2S_CRITICAL_SECTION_ENTER();
-	((I2s *)hw)->TXDATA.reg = data;
-	I2S_CRITICAL_SECTION_LEAVE();
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
+	return (((I2s *)hw)->RXDATA.reg & I2S_RXDATA_DATA_Msk) >> I2S_RXDATA_DATA_Pos;
+}
+
+static inline hri_i2s_rxdata_reg_t hri_i2s_get_RXDATA_reg(const void *const hw, hri_i2s_rxdata_reg_t mask)
+{
+	uint32_t tmp;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
+	tmp = ((I2s *)hw)->RXDATA.reg;
+	tmp &= mask;
+	return tmp;
+}
+
+static inline hri_i2s_rxdata_reg_t hri_i2s_read_RXDATA_reg(const void *const hw)
+{
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
+	return ((I2s *)hw)->RXDATA.reg;
 }
 
 static inline void hri_i2s_set_CTRLA_SWRST_bit(const void *const hw)
 {
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST);
 	((I2s *)hw)->CTRLA.reg |= I2S_CTRLA_SWRST;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
@@ -506,21 +570,15 @@ static inline bool hri_i2s_get_CTRLA_SWRST_bit(const void *const hw)
 static inline void hri_i2s_set_CTRLA_ENABLE_bit(const void *const hw)
 {
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	((I2s *)hw)->CTRLA.reg |= I2S_CTRLA_ENABLE;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline bool hri_i2s_get_CTRLA_ENABLE_bit(const void *const hw)
 {
 	uint8_t tmp;
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	tmp = ((I2s *)hw)->CTRLA.reg;
 	tmp = (tmp & I2S_CTRLA_ENABLE) >> I2S_CTRLA_ENABLE_Pos;
 	return (bool)tmp;
@@ -530,57 +588,42 @@ static inline void hri_i2s_write_CTRLA_ENABLE_bit(const void *const hw, bool val
 {
 	uint8_t tmp;
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	tmp = ((I2s *)hw)->CTRLA.reg;
 	tmp &= ~I2S_CTRLA_ENABLE;
 	tmp |= value << I2S_CTRLA_ENABLE_Pos;
 	((I2s *)hw)->CTRLA.reg = tmp;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_i2s_clear_CTRLA_ENABLE_bit(const void *const hw)
 {
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	((I2s *)hw)->CTRLA.reg &= ~I2S_CTRLA_ENABLE;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_i2s_toggle_CTRLA_ENABLE_bit(const void *const hw)
 {
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	((I2s *)hw)->CTRLA.reg ^= I2S_CTRLA_ENABLE;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_i2s_set_CTRLA_CKEN0_bit(const void *const hw)
 {
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	((I2s *)hw)->CTRLA.reg |= I2S_CTRLA_CKEN0;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline bool hri_i2s_get_CTRLA_CKEN0_bit(const void *const hw)
 {
 	uint8_t tmp;
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
 	tmp = ((I2s *)hw)->CTRLA.reg;
 	tmp = (tmp & I2S_CTRLA_CKEN0) >> I2S_CTRLA_CKEN0_Pos;
 	return (bool)tmp;
@@ -590,57 +633,42 @@ static inline void hri_i2s_write_CTRLA_CKEN0_bit(const void *const hw, bool valu
 {
 	uint8_t tmp;
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	tmp = ((I2s *)hw)->CTRLA.reg;
 	tmp &= ~I2S_CTRLA_CKEN0;
 	tmp |= value << I2S_CTRLA_CKEN0_Pos;
 	((I2s *)hw)->CTRLA.reg = tmp;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_i2s_clear_CTRLA_CKEN0_bit(const void *const hw)
 {
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	((I2s *)hw)->CTRLA.reg &= ~I2S_CTRLA_CKEN0;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_i2s_toggle_CTRLA_CKEN0_bit(const void *const hw)
 {
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	((I2s *)hw)->CTRLA.reg ^= I2S_CTRLA_CKEN0;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_i2s_set_CTRLA_CKEN1_bit(const void *const hw)
 {
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	((I2s *)hw)->CTRLA.reg |= I2S_CTRLA_CKEN1;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline bool hri_i2s_get_CTRLA_CKEN1_bit(const void *const hw)
 {
 	uint8_t tmp;
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
 	tmp = ((I2s *)hw)->CTRLA.reg;
 	tmp = (tmp & I2S_CTRLA_CKEN1) >> I2S_CTRLA_CKEN1_Pos;
 	return (bool)tmp;
@@ -650,57 +678,42 @@ static inline void hri_i2s_write_CTRLA_CKEN1_bit(const void *const hw, bool valu
 {
 	uint8_t tmp;
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	tmp = ((I2s *)hw)->CTRLA.reg;
 	tmp &= ~I2S_CTRLA_CKEN1;
 	tmp |= value << I2S_CTRLA_CKEN1_Pos;
 	((I2s *)hw)->CTRLA.reg = tmp;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_i2s_clear_CTRLA_CKEN1_bit(const void *const hw)
 {
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	((I2s *)hw)->CTRLA.reg &= ~I2S_CTRLA_CKEN1;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_i2s_toggle_CTRLA_CKEN1_bit(const void *const hw)
 {
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	((I2s *)hw)->CTRLA.reg ^= I2S_CTRLA_CKEN1;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_i2s_set_CTRLA_TXEN_bit(const void *const hw)
 {
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	((I2s *)hw)->CTRLA.reg |= I2S_CTRLA_TXEN;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline bool hri_i2s_get_CTRLA_TXEN_bit(const void *const hw)
 {
 	uint8_t tmp;
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	tmp = ((I2s *)hw)->CTRLA.reg;
 	tmp = (tmp & I2S_CTRLA_TXEN) >> I2S_CTRLA_TXEN_Pos;
 	return (bool)tmp;
@@ -710,57 +723,42 @@ static inline void hri_i2s_write_CTRLA_TXEN_bit(const void *const hw, bool value
 {
 	uint8_t tmp;
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	tmp = ((I2s *)hw)->CTRLA.reg;
 	tmp &= ~I2S_CTRLA_TXEN;
 	tmp |= value << I2S_CTRLA_TXEN_Pos;
 	((I2s *)hw)->CTRLA.reg = tmp;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_i2s_clear_CTRLA_TXEN_bit(const void *const hw)
 {
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	((I2s *)hw)->CTRLA.reg &= ~I2S_CTRLA_TXEN;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_i2s_toggle_CTRLA_TXEN_bit(const void *const hw)
 {
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	((I2s *)hw)->CTRLA.reg ^= I2S_CTRLA_TXEN;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_i2s_set_CTRLA_RXEN_bit(const void *const hw)
 {
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	((I2s *)hw)->CTRLA.reg |= I2S_CTRLA_RXEN;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline bool hri_i2s_get_CTRLA_RXEN_bit(const void *const hw)
 {
 	uint8_t tmp;
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	tmp = ((I2s *)hw)->CTRLA.reg;
 	tmp = (tmp & I2S_CTRLA_RXEN) >> I2S_CTRLA_RXEN_Pos;
 	return (bool)tmp;
@@ -770,36 +768,27 @@ static inline void hri_i2s_write_CTRLA_RXEN_bit(const void *const hw, bool value
 {
 	uint8_t tmp;
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	tmp = ((I2s *)hw)->CTRLA.reg;
 	tmp &= ~I2S_CTRLA_RXEN;
 	tmp |= value << I2S_CTRLA_RXEN_Pos;
 	((I2s *)hw)->CTRLA.reg = tmp;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_i2s_clear_CTRLA_RXEN_bit(const void *const hw)
 {
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	((I2s *)hw)->CTRLA.reg &= ~I2S_CTRLA_RXEN;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline void hri_i2s_toggle_CTRLA_RXEN_bit(const void *const hw)
 {
 	I2S_CRITICAL_SECTION_ENTER();
-	hri_i2s_wait_for_sync(hw,
-	                      I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_CKEN0 | I2S_SYNCBUSY_CKEN1
-	                          | I2S_SYNCBUSY_TXEN
-	                          | I2S_SYNCBUSY_RXEN);
 	((I2s *)hw)->CTRLA.reg ^= I2S_CTRLA_RXEN;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
@@ -807,12 +796,14 @@ static inline void hri_i2s_set_CTRLA_reg(const void *const hw, hri_i2s_ctrla_reg
 {
 	I2S_CRITICAL_SECTION_ENTER();
 	((I2s *)hw)->CTRLA.reg |= mask;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_i2s_ctrla_reg_t hri_i2s_get_CTRLA_reg(const void *const hw, hri_i2s_ctrla_reg_t mask)
 {
 	uint8_t tmp;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	tmp = ((I2s *)hw)->CTRLA.reg;
 	tmp &= mask;
 	return tmp;
@@ -822,6 +813,7 @@ static inline void hri_i2s_write_CTRLA_reg(const void *const hw, hri_i2s_ctrla_r
 {
 	I2S_CRITICAL_SECTION_ENTER();
 	((I2s *)hw)->CTRLA.reg = data;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
@@ -829,6 +821,7 @@ static inline void hri_i2s_clear_CTRLA_reg(const void *const hw, hri_i2s_ctrla_r
 {
 	I2S_CRITICAL_SECTION_ENTER();
 	((I2s *)hw)->CTRLA.reg &= ~mask;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
@@ -836,11 +829,13 @@ static inline void hri_i2s_toggle_CTRLA_reg(const void *const hw, hri_i2s_ctrla_
 {
 	I2S_CRITICAL_SECTION_ENTER();
 	((I2s *)hw)->CTRLA.reg ^= mask;
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 static inline hri_i2s_ctrla_reg_t hri_i2s_read_CTRLA_reg(const void *const hw)
 {
+	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_SWRST | I2S_SYNCBUSY_ENABLE | I2S_SYNCBUSY_TXEN | I2S_SYNCBUSY_RXEN);
 	return ((I2s *)hw)->CTRLA.reg;
 }
 
@@ -3021,82 +3016,12 @@ static inline hri_i2s_rxctrl_reg_t hri_i2s_read_RXCTRL_reg(const void *const hw)
 	return ((I2s *)hw)->RXCTRL.reg;
 }
 
-static inline bool hri_i2s_get_SYNCBUSY_SWRST_bit(const void *const hw)
+static inline void hri_i2s_write_TXDATA_reg(const void *const hw, hri_i2s_txdata_reg_t data)
 {
-	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_SWRST) >> I2S_SYNCBUSY_SWRST_Pos;
-}
-
-static inline bool hri_i2s_get_SYNCBUSY_ENABLE_bit(const void *const hw)
-{
-	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_ENABLE) >> I2S_SYNCBUSY_ENABLE_Pos;
-}
-
-static inline bool hri_i2s_get_SYNCBUSY_CKEN0_bit(const void *const hw)
-{
-	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_CKEN0) >> I2S_SYNCBUSY_CKEN0_Pos;
-}
-
-static inline bool hri_i2s_get_SYNCBUSY_CKEN1_bit(const void *const hw)
-{
-	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_CKEN1) >> I2S_SYNCBUSY_CKEN1_Pos;
-}
-
-static inline bool hri_i2s_get_SYNCBUSY_TXEN_bit(const void *const hw)
-{
-	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_TXEN) >> I2S_SYNCBUSY_TXEN_Pos;
-}
-
-static inline bool hri_i2s_get_SYNCBUSY_RXEN_bit(const void *const hw)
-{
-	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_RXEN) >> I2S_SYNCBUSY_RXEN_Pos;
-}
-
-static inline bool hri_i2s_get_SYNCBUSY_TXDATA_bit(const void *const hw)
-{
-	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_TXDATA) >> I2S_SYNCBUSY_TXDATA_Pos;
-}
-
-static inline bool hri_i2s_get_SYNCBUSY_RXDATA_bit(const void *const hw)
-{
-	return (((I2s *)hw)->SYNCBUSY.reg & I2S_SYNCBUSY_RXDATA) >> I2S_SYNCBUSY_RXDATA_Pos;
-}
-
-static inline hri_i2s_syncbusy_reg_t hri_i2s_get_SYNCBUSY_reg(const void *const hw, hri_i2s_syncbusy_reg_t mask)
-{
-	uint16_t tmp;
-	tmp = ((I2s *)hw)->SYNCBUSY.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_i2s_syncbusy_reg_t hri_i2s_read_SYNCBUSY_reg(const void *const hw)
-{
-	return ((I2s *)hw)->SYNCBUSY.reg;
-}
-
-static inline hri_i2s_rxdata_reg_t hri_i2s_get_RXDATA_DATA_bf(const void *const hw, hri_i2s_rxdata_reg_t mask)
-{
+	I2S_CRITICAL_SECTION_ENTER();
+	((I2s *)hw)->TXDATA.reg = data;
 	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
-	return (((I2s *)hw)->RXDATA.reg & I2S_RXDATA_DATA(mask)) >> I2S_RXDATA_DATA_Pos;
-}
-
-static inline hri_i2s_rxdata_reg_t hri_i2s_read_RXDATA_DATA_bf(const void *const hw)
-{
-	hri_i2s_wait_for_sync(hw, I2S_SYNCBUSY_MASK);
-	return (((I2s *)hw)->RXDATA.reg & I2S_RXDATA_DATA_Msk) >> I2S_RXDATA_DATA_Pos;
-}
-
-static inline hri_i2s_rxdata_reg_t hri_i2s_get_RXDATA_reg(const void *const hw, hri_i2s_rxdata_reg_t mask)
-{
-	uint32_t tmp;
-	tmp = ((I2s *)hw)->RXDATA.reg;
-	tmp &= mask;
-	return tmp;
-}
-
-static inline hri_i2s_rxdata_reg_t hri_i2s_read_RXDATA_reg(const void *const hw)
-{
-	return ((I2s *)hw)->RXDATA.reg;
+	I2S_CRITICAL_SECTION_LEAVE();
 }
 
 #ifdef __cplusplus
