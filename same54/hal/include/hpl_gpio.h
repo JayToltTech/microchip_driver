@@ -43,7 +43,7 @@
  *@{
  */
 
-#include <compiler.h>
+#include "../utils/include/compiler.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -66,7 +66,11 @@ enum gpio_pull_mode { GPIO_PULL_OFF, GPIO_PULL_UP, GPIO_PULL_DOWN };
 /**
  * \brief PORT direction settins
  */
-enum gpio_direction { GPIO_DIRECTION_OFF, GPIO_DIRECTION_IN, GPIO_DIRECTION_OUT };
+enum gpio_direction {
+  GPIO_DIRECTION_OFF,
+  GPIO_DIRECTION_IN,
+  GPIO_DIRECTION_OUT
+};
 
 /**
  * \brief PORT group abstraction
@@ -103,7 +107,8 @@ void _gpio_init(void);
  *                      GPIO_DIRECTION_OUT  = set pin direction to output
  *                      and disable input buffer
  */
-static inline void _gpio_set_direction(const enum gpio_port port, const uint32_t mask,
+static inline void _gpio_set_direction(const enum gpio_port port,
+                                       const uint32_t mask,
                                        const enum gpio_direction direction);
 
 /**
@@ -118,7 +123,8 @@ static inline void _gpio_set_direction(const enum gpio_port port, const uint32_t
  * \param[in] level true  = pin level is set to 1
  *                  false = pin level is set to 0
  */
-static inline void _gpio_set_level(const enum gpio_port port, const uint32_t mask, const bool level);
+static inline void _gpio_set_level(const enum gpio_port port,
+                                   const uint32_t mask, const bool level);
 
 /**
  * \brief Change output level to the opposite with mask
@@ -130,7 +136,8 @@ static inline void _gpio_set_level(const enum gpio_port port, const uint32_t mas
  * \param[in] mask  Bit mask where 1 means apply direction setting to
  *                  the corresponding pin
  */
-static inline void _gpio_toggle_level(const enum gpio_port port, const uint32_t mask);
+static inline void _gpio_toggle_level(const enum gpio_port port,
+                                      const uint32_t mask);
 
 /**
  * \brief Get input levels on all port pins
@@ -160,7 +167,8 @@ static inline uint32_t _gpio_get_level(const enum gpio_port port);
  *                      GPIO_PULL_UP   = pull resistor on pin will pull pin
  *                      level to VCC
  */
-static inline void _gpio_set_pin_pull_mode(const enum gpio_port port, const uint8_t pin,
+static inline void _gpio_set_pin_pull_mode(const enum gpio_port port,
+                                           const uint8_t pin,
                                            const enum gpio_pull_mode pull_mode);
 
 /**
@@ -173,9 +181,10 @@ static inline void _gpio_set_pin_pull_mode(const enum gpio_port port, const uint
  *                     found in the header files for the device
  *
  */
-static inline void _gpio_set_pin_function(const uint32_t gpio, const uint32_t function);
+static inline void _gpio_set_pin_function(const uint32_t gpio,
+                                          const uint32_t function);
 
-#include <hpl_gpio_base.h>
+#include "../../hpl/port/hpl_gpio_base.h"
 //@}
 
 #ifdef __cplusplus

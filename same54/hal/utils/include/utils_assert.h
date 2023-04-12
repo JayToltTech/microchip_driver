@@ -38,10 +38,10 @@
 extern "C" {
 #endif
 
-#include <compiler.h>
+#include "compiler.h"
 
 #ifndef USE_SIMPLE_ASSERT
-//# define USE_SIMPLE_ASSERT
+// # define USE_SIMPLE_ASSERT
 #endif
 
 /**
@@ -58,9 +58,8 @@ extern "C" {
 #ifdef DEBUG
 
 #ifdef USE_SIMPLE_ASSERT
-#define ASSERT_IMPL(condition, file, line)                                                                             \
-	if (!(condition))                                                                                                  \
-		__asm("BKPT #0");
+#define ASSERT_IMPL(condition, file, line) \
+  if (!(condition)) __asm("BKPT #0");
 #else
 #define ASSERT_IMPL(condition, file, line) assert((condition), file, line)
 #endif
