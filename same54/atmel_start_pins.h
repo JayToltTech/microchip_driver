@@ -8,7 +8,7 @@
 #ifndef ATMEL_START_PINS_H_INCLUDED
 #define ATMEL_START_PINS_H_INCLUDED
 
-#include "hal_gpio.h"
+#include "hal/include/hal_gpio.h"
 
 // SAME54 has 14 pin functions
 

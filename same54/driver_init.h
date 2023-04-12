@@ -20,13 +20,12 @@ extern "C" {
 #include <hal_init.h>
 #include <hal_io.h>
 #include <hal_sleep.h>
-
 #include <hal_usart_os.h>
 
 #define EDBG_COM_BUFFER_SIZE 16
 
 extern struct usart_os_descriptor EDBG_COM;
-extern uint8_t                    EDBG_COM_buffer[];
+extern uint8_t EDBG_COM_buffer[];
 
 void EDBG_COM_PORT_init(void);
 void EDBG_COM_CLOCK_init(void);
@@ -41,4 +40,4 @@ void system_init(void);
 #ifdef __cplusplus
 }
 #endif
-#endif // DRIVER_INIT_INCLUDED
+#endif  // DRIVER_INIT_INCLUDED
